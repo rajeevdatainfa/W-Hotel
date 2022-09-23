@@ -41,6 +41,8 @@ dependencies:
   image_stack: ^2.1.1
   webview_flutter: ^2.3.1
   dots_indicator: ^2.1.0
+  flutter_local_notifications: ^9.3.0
+  fluttertoast: ^8.0.0
 
 
 dev_dependencies:

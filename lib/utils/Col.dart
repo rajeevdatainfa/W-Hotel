@@ -2,12 +2,13 @@ import 'dart:ui';
 
 class Col{
 
-  static const primary_color = Color(0xFF09006E);
-  static const primary_dark = Color(0xFF08005F);
-  static const primary_deep = Color(0xFF07004E);
+
+  static const primary_dark = Color(0xFF8C1A3D);
+  static const primary_deep = Color(0xFF8F153B);
   static const primary_red = Color(0xFFCA1322);
   static const primary_white = Color(0xFFF6F6F6);
   static const primary_color_t = Color(0xBE8C0016);
+  static const primary_color = Color(0xFF8C1A3D);
   static const primary_bg_t = Color(0x16EC5300);
   static const primary_black = Color(0xFF090A0C);
   static const primary_black_light = Color(0xFF3E3E3E);
@@ -27,6 +28,7 @@ class Col{
   static const white = Color(0xFFFFFFFF);
   static const white_full = Color(0xFFFFFFFF);
   static const white_bg = Color(0xFFEFEFF7);
+  static const white_background = Color(0xFFF2F2F2);
   static const white_bg1 = Color(0xFFF2F2F2);
   static const white_circle = Color(0xFFDCDCDC);
   static const white_bg_blue = Color(0xFFF1F1F9);

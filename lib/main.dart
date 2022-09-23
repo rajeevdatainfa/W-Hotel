@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:hotels/screens/SplashActivity.dart';
+import 'package:hotels/screens/SplashSliderActivity.dart';
 import 'package:hotels/utils/Col.dart';
 import 'screens/root_app.dart';
 import 'theme/color.dart';
@@ -58,7 +59,7 @@ class SplashScreenState extends State<MyHomePage>{
       home: Scaffold(
 
           body: Container(
-            color: Col.white,
+            color: Col.primary_color,
 
             child: SafeArea(
 
@@ -67,9 +68,9 @@ class SplashScreenState extends State<MyHomePage>{
                   children: [
                     Expanded(
                       child: Container(
-                          margin: EdgeInsets.all(40),
+                          margin: EdgeInsets.all(80),
                           child: Image(
-                            image: AssetImage("assets/images/fifa_logo.jpg"),
+                            image: AssetImage("assets/images/logo.png"),
                             fit: BoxFit.fitWidth,
 
                           )
@@ -91,7 +92,8 @@ class SplashScreenState extends State<MyHomePage>{
 
 
   goToNextPage() async {
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashActivity()));
+    //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashActivity()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }
 
 

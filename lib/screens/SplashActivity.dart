@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:hotels/model/Slider.dart';
 import 'package:hotels/screens/HomeActivity.dart';
 import 'package:hotels/screens/MainActivity.dart';
+import 'package:hotels/screens/SplashSliderActivity.dart';
 import 'package:hotels/utils/Col.dart';
 
 
@@ -483,7 +484,8 @@ goToNextPage(BuildContext context, int intdex) async {
 
   if(intdex==2){
 
-    Navigator.of(context,rootNavigator: true).push(MaterialPageRoute(builder: (context)=> MainActivity()));
+    //Navigator.of(context,rootNavigator: true).push(MaterialPageRoute(builder: (context)=> MainActivity()));
+    Navigator.of(context,rootNavigator: true).push(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
 
   }else if(intdex==0){
 

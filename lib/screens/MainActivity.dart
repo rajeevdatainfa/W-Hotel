@@ -50,11 +50,8 @@ class HomeActivityView extends State<MainActivity> {
           child: Container(
             //color: Col.white_t1,
             decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(
-                    //"https://nld.mediacdn.vn/291774122806476800/2022/4/1/screen-shot-2022-04-01-at-81629-am-16487758596331987628915.png",scale: 1.0),
-                    "https://img.freepik.com/premium-vector/fifa-world-cup-qatar-2022-logo-stylized-vector-isolated-illustration-with-football_633888-121.jpg?w=2000",scale: 1.0),
-                    //"https://c8.alamy.com/comp/2F7FRM2/official-fifa-world-cup-qatar-2022-logo-2F7FRM2.jpg",scale: 1.0),
+              image:  DecorationImage(
+                image: AssetImage("assets/images/login.png"),
                 fit: BoxFit.fill,
               ),
 
@@ -99,55 +96,65 @@ class HomeActivityView extends State<MainActivity> {
                         ),),
                   ),*/
                   Flexible(
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: EdgeInsets.all(5.0),
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Container(
-                              alignment: Alignment.center,
-                              width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height,
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
 
-                              padding: EdgeInsets.only(
-                                  left: 2, top: 5, right: 2, bottom: 220),
-                              // child: Text(catDetails.catTitle,
-                              child: GridView.count(
-                                scrollDirection: Axis.vertical,
-                                shrinkWrap: true,
-                                crossAxisCount: 2,
-                                childAspectRatio: 1.2,
-                                primary: false,
-                                padding: const EdgeInsets.all(12),
-                                children: [
-                                  _addAmountLayout(context,0,"W Hotel","Book your hotel", "assets/images/ic_w_hotel.jpg",Col.s1),
-                                  _addAmountLayout(context,1,"Menus","Scan to open", "assets/images/ic_res_menues.jpg",Col.s2),
-                                  _addAmountLayout(context,2,"Doha","City of Qatar", "assets/images/ic_doha.jpg",Col.s3),
-                                  _addAmountLayout(context,3,"Fifa","Looking for create history", "assets/images/ic_fifa.jpg",Col.s4),
-                                  _addAmountLayout(context,4,"Training","Make yourself", "assets/images/ic_training_pic2.png",Col.s2),
-                                  _addAmountLayout(context,5,"Schedule","Check match schedules", "assets/images/ic_sc2.png",Col.s5),
+                        children: <Widget>[
 
-
-
-                                ],
-
-                              ),
-                            ),
-                            SizedBox(
-                              height: 35,
+                          Container(
+                            width: 150,
+                            child: Image(
+                              image: new AssetImage("assets/images/logo.png"),
+                              color: null,
+                              fit: BoxFit.fitWidth,
                             ),
 
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            alignment: Alignment.bottomCenter,
+                            width: MediaQuery.of(context).size.width,
+
+
+                            padding: EdgeInsets.only(
+                                left: 20, top: 5, right: 20, bottom: 20),
+                            // child: Text(catDetails.catTitle,
+                            child: GridView.count(
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              crossAxisCount: 2,
+                              childAspectRatio: 1.4,
+                              primary: false,
+                              padding: const EdgeInsets.all(12),
+                              children: [
+                                _addAmountLayout(context,0,"WElCOME PACK","Book your hotel", "assets/images/ic_welcome.png",Col.s1),
+                                _addAmountLayout(context,1,"B&F OUTLET","Scan to open", "assets/images/ic_welcome.png",Col.s2),
+                                _addAmountLayout(context,2,"BUS SCHEDULE","City of Qatar", "assets/images/ic_bus.png",Col.s3),
+                                _addAmountLayout(context,3,"MENU","Looking for create history", "assets/images/ic_menu.png",Col.s4),
+                                _addAmountLayout(context,4,"FOOD SAFETY","Make yourself", "assets/images/ic_food_safety.png",Col.s2),
+                                _addAmountLayout(context,5,"TRAINING","Check match schedules", "assets/images/ic_training.png",Col.s5),
+                                _addAmountLayout(context,5,"SOPS","Check match schedules", "assets/images/ic_sop.png",Col.s5),
+
+
+
+                              ],
+
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5,
+                          ),
 
 
 
 
-                          ],
-                        ),
+
+                        ],
                       ),
-                    ),
+                    )
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -203,7 +210,7 @@ class HomeActivityView extends State<MainActivity> {
 
   Widget _addAmountLayout(BuildContext context, int index,String text,String desc,String icon,Color color) {
     return Padding(
-      padding: const EdgeInsets.only(left: 50,right: 50,top: 10,bottom: 10),
+      padding: const EdgeInsets.only(left: 10,right: 10,top: 8,bottom: 8),
       child: Column(
         children: [
           Expanded(
@@ -213,9 +220,11 @@ class HomeActivityView extends State<MainActivity> {
                     goToNextPage(context, index);
                   },
                   child: Container(
+                    width: 150,
+                    height: 150,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12.0),
-                      color: Col.wt2,
+                      color: Col.white_background,
 
                     ),
 
@@ -227,7 +236,7 @@ class HomeActivityView extends State<MainActivity> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                              decoration: BoxDecoration(
+                              /*decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15.0),
                                 gradient: LinearGradient(
                                   begin: Alignment(0,-1),
@@ -240,10 +249,10 @@ class HomeActivityView extends State<MainActivity> {
 
                                 ),
                                 //borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10),)
-                              ),
+                              ),*/
                               padding: EdgeInsets.all(3.0),
                               child: ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
+                                //borderRadius: BorderRadius.circular(15.0),
                                 child: Image(
                                   image: new AssetImage(icon),
                                   width: 50,
@@ -259,13 +268,13 @@ class HomeActivityView extends State<MainActivity> {
 
 
                           ),
-                          SizedBox(height: 8,),
+                          SizedBox(height: 4,),
 
                           Text(
                             text,
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
-                              fontSize: 16,
+                              fontSize: 12,
                               color: Col.primary_black,
                               fontFamily: "RobotoExtraBold"
                             ),
@@ -337,24 +346,26 @@ goToNextPage(BuildContext context, int intex) async {
   print("goToNextPage");
 
   if (intex == 0) {
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://w-hotels.marriott.com/",)));
+   // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://w-hotels.marriott.com/",)));
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",)));
+
   }else if(intex == 1){
 
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MenuActivity()));
+  //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MenuActivity()));
   //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   }
   else if(intex == 2){
 
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => AboutActivity()));
+   // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => AboutActivity()));
 
   }
   else if(intex == 3){
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",)));
+  //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",)));
 
   }
   else if(intex == 5){
 
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
+   // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   }else {
 

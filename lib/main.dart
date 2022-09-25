@@ -86,14 +86,14 @@ class SplashScreenState extends State<MyHomePage>{
   }
 
   Future<Timer> loadData() async {
-    return Timer(Duration(seconds: 5), goToNextPage);
+    return Timer(Duration(seconds: 2), goToNextPage);
 
   }
 
 
   goToNextPage() async {
-    //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashActivity()));
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashActivity()));
+    //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }
 
 

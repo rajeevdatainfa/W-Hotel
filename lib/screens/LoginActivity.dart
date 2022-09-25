@@ -288,7 +288,9 @@ class LoginView extends State<LoginActivity> {
                                 setState(() {
                                   is_loading = true;
                                 });
-                                 signInApi( _email, _pass,widget.isAddListing,context);
+
+                                loadData();
+                                 //signInApi( _email, _pass,widget.isAddListing,context);
                                // goToNextPage(context, false);
                               } else {
                                 showToast("No Internet connection");
@@ -437,6 +439,18 @@ class LoginView extends State<LoginActivity> {
         return alert;
       },
     );
+  }
+
+  Future<Timer> loadData() async {
+    return Timer(Duration(seconds: 2), goToNextPage);
+
+  }
+
+
+  goToNextPage() async {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => MainActivity()));
+    //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }
 
   void signInApi(String email, String password, bool isAddlisting,

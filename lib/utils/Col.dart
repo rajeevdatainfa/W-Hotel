@@ -32,7 +32,8 @@ class Col{
   static const white_bg1 = Color(0xFFF2F2F2);
   static const white_circle = Color(0xFFDCDCDC);
   static const white_bg_blue = Color(0xFFF1F1F9);
-  static const tranparent = Color(0x1E000000);
+  static const tranparent = Color(0x2C000000);
+  static const tranparent2 = Color(0x45000000);
   static const tranparent1 = Color(0x76000000);
   static const image_bg = Color(0xFFe6e5ed);
 

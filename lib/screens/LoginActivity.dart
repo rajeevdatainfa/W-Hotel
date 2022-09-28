@@ -6,6 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hotels/api/Apis.dart';
 import 'package:hotels/model/ObjectRes.dart';
 import 'package:hotels/model/UserDetails.dart';
+import 'package:hotels/screens/LandingActivity.dart';
 import 'package:hotels/screens/MainActivity.dart';
 import 'package:hotels/utils/Col.dart';
 
@@ -448,8 +449,8 @@ class LoginView extends State<LoginActivity> {
 
 
   goToNextPage() async {
-    Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => MainActivity()));
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LandingActivity()));
+        //.push(MaterialPageRoute(builder: (context) => MainActivity()));
     //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }
 

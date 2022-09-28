@@ -116,7 +116,7 @@ class MainScreen extends State<MyHomePage> {
   }
 
   goToNext() async {
-    Navigator.of(context).push(MaterialPageRoute(
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
         builder: (context) => LoginActivity(isAddListing: true,)));
     //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }

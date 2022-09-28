@@ -75,7 +75,7 @@ class HomeActivityView extends State<MainActivity> {
                           padding: EdgeInsets.only(left: 20,top: 20),
                           child: Align(
                             alignment: Alignment.topLeft,
-                            child: Icon(Icons.menu,color: Col.white,),
+                            /*child: Icon(Icons.menu,color: Col.white,),*/
                           ),
                         ),
                         onTap: () {
@@ -85,7 +85,7 @@ class HomeActivityView extends State<MainActivity> {
                           ),
                       Flexible(
                           child: Container(
-                           margin: EdgeInsets.only(top: 15),
+                           margin: EdgeInsets.only(top: 35),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
@@ -169,7 +169,7 @@ class HomeActivityView extends State<MainActivity> {
                                                               alignment: Alignment.bottomCenter,
                                                               padding: EdgeInsets.only(bottom: 10),
                                                               child: Text(
-                                                                "Welcome Park",
+                                                                "Welcome Pack",
                                                                 style: TextStyle(
                                                                     fontSize: 16,
                                                                     color: Col.white,
@@ -533,7 +533,7 @@ class HomeActivityView extends State<MainActivity> {
                                                         alignment: Alignment.bottomCenter,
                                                         padding: EdgeInsets.only(bottom: 2),
                                                         child: Text(
-                                                          "Stop",
+                                                          "Sop",
                                                           style: TextStyle(
                                                               fontSize: 18,
                                                               color: Col.white,

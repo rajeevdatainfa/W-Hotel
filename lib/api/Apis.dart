@@ -5,13 +5,13 @@ class Apis{
 
 
   //static const String baseUrl="https://www.welcometograinofsalt.ca/API/frontend/";
-  static const String baseUrl="https://www.labtos.co.uk/API/";
+  static const String baseUrl="http://wdoha20sep-env.eba-tdptfiqp.us-east-1.elasticbeanstalk.com/api/v1/auth/";
 
   static const String payment=baseUrl + "";
   static const String listingCatApi=baseUrl + "categories.php";
   static const String listingMenuApi=baseUrl + "menulist.php";
   static const String forgetPassword=baseUrl + "forgot_password.php";
-  static const String loginApi=baseUrl + "user_login.php";
+  static const String loginApi=baseUrl + "login";
   static const String signUpApi=baseUrl + "user_register.php";
   static const String productDetails=baseUrl + "product_details.php";
   static const String addToCart=baseUrl + "add_to_cart.php";

@@ -3,11 +3,16 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:hotels/screens/SplashActivity.dart';
 import 'package:hotels/screens/SplashSliderActivity.dart';
+import 'package:hotels/utils/App.dart';
 import 'package:hotels/utils/Col.dart';
 import 'screens/root_app.dart';
 import 'theme/color.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await App.getInstance();
+
+  //await Firebase.initializeApp();
   runApp(MyApp());
 }
 

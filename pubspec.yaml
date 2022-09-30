@@ -43,6 +43,7 @@ dependencies:
   dots_indicator: ^2.1.0
   flutter_local_notifications: ^9.3.0
   fluttertoast: ^8.0.0
+  shared_preferences: ^2.0.9
 
 
 dev_dependencies:

@@ -4,11 +4,14 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hotels/api/Apis.dart';
+import 'package:hotels/model/LoginRes.dart';
 import 'package:hotels/model/ObjectRes.dart';
 import 'package:hotels/model/UserDetails.dart';
 import 'package:hotels/screens/LandingActivity.dart';
 import 'package:hotels/screens/MainActivity.dart';
+import 'package:hotels/utils/App.dart';
 import 'package:hotels/utils/Col.dart';
+import 'package:hotels/utils/Cons.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -290,8 +293,8 @@ class LoginView extends State<LoginActivity> {
                                   is_loading = true;
                                 });
 
-                                loadData();
-                                 //signInApi( _email, _pass,widget.isAddListing,context);
+                                //loadData();
+                                LoginApi( _email, _pass,widget.isAddListing,context);
                                // goToNextPage(context, false);
                               } else {
                                 showToast("No Internet connection");
@@ -454,6 +457,60 @@ class LoginView extends State<LoginActivity> {
     //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }
 
+  void LoginApi(String email, String password, bool isAddlisting,
+      BuildContext buildContext) async {
+    Map map = {
+      "email": email,
+      "password": password,
+      "deviceId": "d123",
+      "deviceToken": "token"
+
+    };
+    var body = json.encode(map);
+    try {
+      var response = await http.post(Uri.parse(Apis.loginApi),headers: {"Content-Type": "application/json"}, body: body);
+      print("================>"+Apis.loginApi.toString() + "");
+
+      //Navigator.of(context, rootNavigator: true).pop();
+      if (response.statusCode == 200) {
+        var jsonData = json.decode(response.body);
+        print("=========================>"+jsonData.toString() + "");
+
+        LoginRes objectRes = LoginRes.fromJson(jsonData);
+        AuthData? authData = objectRes.data;
+
+        App.putString(Cons.aToken,authData!.token.toString());
+
+        print("=========================>" + jsonData.toString() + "");
+
+        setState(() {
+          is_loading = false;
+        });
+        //Navigator.of(buildContext).pop();
+        showToast(objectRes.message!);
+
+        print(response.body);
+
+        goToNextPage();
+      } else {
+        setState(() {
+          is_loading = false;
+        });
+        //Navigator.of(context, rootNavigator: true).pop();
+        print(response.body);
+        showToast("Something wrong!");
+      }
+    } on Exception catch (_) {
+      setState(() {
+        is_loading = false;
+      });
+      Navigator.of(context, rootNavigator: true).pop();
+
+      showToast("Something wrong!");
+    }
+  }
+}
+
   void signInApi(String email, String password, bool isAddlisting,
       BuildContext buildContext) async {
     Map map = {
@@ -466,7 +523,7 @@ class LoginView extends State<LoginActivity> {
       var response = await http.post(Uri.parse(Apis.loginApi), body: map);
       //print("=========================>"+response.toString() + "");
 
-      Navigator.of(context, rootNavigator: true).pop();
+
       if (response.statusCode == 200) {
         var jsonData = json.decode(response.body);
         //print("=========================>"+jsonData.toString() + "");
@@ -488,20 +545,20 @@ class LoginView extends State<LoginActivity> {
         }
         print("=========================>" + jsonData.toString() + "");
 
-        showToast(objectRes.message);
+
 
         print(response.body);
       } else {
-        Navigator.of(context, rootNavigator: true).pop();
+       // Navigator.of(context, rootNavigator: true).pop();
         print(response.body);
-        showToast("Something wrong!");
+       // showToast("Something wrong!");
       }
     } on Exception catch (_) {
-      Navigator.of(context, rootNavigator: true).pop();
+     // Navigator.of(context, rootNavigator: true).pop();
 
-      showToast("Something wrong!");
+     // showToast("Something wrong!");
     }
-  }
+
 }
 
 goToNextPage(BuildContext context, bool isAddListing) async {

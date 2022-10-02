@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hotels/screens/AboutActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
 import 'package:hotels/screens/MenuActivity.dart';
+import 'package:hotels/screens/RestuarentActivity.dart';
 import 'package:hotels/screens/ScheduleActivity.dart';
 import 'package:hotels/utils/Col.dart';
 
@@ -384,51 +385,56 @@ class HomeActivityView extends State<MainActivity> {
                                                           ),
                                                           Expanded(
 
-                                                            child: Container(
-                                                              clipBehavior: Clip.hardEdge,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.only(
-                                                                    bottomLeft: Radius.circular(30.0)),
-                                                              ),
-                                                              alignment: Alignment.center,
-                                                              //color: color,
-                                                              child: Stack(
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                goToNextPage(context, 5);
+                                                              },
+                                                              child: Container(
+                                                                clipBehavior: Clip.hardEdge,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.only(
+                                                                      bottomLeft: Radius.circular(30.0)),
+                                                                ),
+                                                                alignment: Alignment.center,
+                                                                //color: color,
+                                                                child: Stack(
 
-                                                                children: [
-                                                                  Container(
-                                                                      height: 130,
-                                                                      child: ClipRRect(
-                                                                        //borderRadius: BorderRadius.circular(15.0),
-                                                                        child: Image(
-                                                                          image: new AssetImage(
-                                                                              "assets/images/ic_food.jpeg"),
+                                                                  children: [
+                                                                    Container(
+                                                                        height: 130,
+                                                                        child: ClipRRect(
+                                                                          //borderRadius: BorderRadius.circular(15.0),
+                                                                          child: Image(
+                                                                            image: new AssetImage(
+                                                                                "assets/images/ic_food.jpeg"),
 
-                                                                          color: null,
-                                                                          fit: BoxFit.cover,
-                                                                          alignment:
-                                                                          Alignment
-                                                                              .center,
-                                                                        ),
-                                                                      )
-                                                                  ),
-
-                                                                  Container(
-                                                                    height: 130,
-                                                                    color: Col.tranparent,
-                                                                    alignment: Alignment.bottomCenter,
-                                                                    padding: EdgeInsets.only(bottom: 6),
-                                                                    child: Text(
-                                                                      "Food Safety",
-                                                                      style: TextStyle(
-                                                                          fontSize: 16,
-                                                                          color: Col.white,
-                                                                          fontFamily:
-                                                                          "RobotoExtraBold"),
+                                                                            color: null,
+                                                                            fit: BoxFit.cover,
+                                                                            alignment:
+                                                                            Alignment
+                                                                                .center,
+                                                                          ),
+                                                                        )
                                                                     ),
-                                                                  ),
+
+                                                                    Container(
+                                                                      height: 130,
+                                                                      color: Col.tranparent,
+                                                                      alignment: Alignment.bottomCenter,
+                                                                      padding: EdgeInsets.only(bottom: 6),
+                                                                      child: Text(
+                                                                        "Food Safety",
+                                                                        style: TextStyle(
+                                                                            fontSize: 16,
+                                                                            color: Col.white,
+                                                                            fontFamily:
+                                                                            "RobotoExtraBold"),
+                                                                      ),
+                                                                    ),
 
 
-                                                                ],
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -775,6 +781,8 @@ goToNextPage(BuildContext context, int intex) async {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",)));
 
   } else if (intex == 5) {
+    //Food
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
     // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   } else {}

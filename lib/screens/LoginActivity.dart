@@ -31,6 +31,7 @@ class LoginView extends State<LoginActivity> {
   String _mobile = "";
   String _email = "";
   String _pass = "";
+  bool isConnect = true;
 
   final List<String> _listBannerN = [
     'assets/images/slider1.png',
@@ -382,6 +383,33 @@ class LoginView extends State<LoginActivity> {
     }
   }
 
+
+  void _isConnected() async {
+    try {
+      final result = await InternetAddress.lookup('google.com');
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        print('connecte bool isConnect = true;d');
+        setState(() {
+          isConnect = true;
+        });
+      }
+      else{
+        setState(() {
+          isConnect = false;
+        });
+        showToast("No Internet connection!");
+      }
+    } on SocketException catch (_) {
+      // showToast("No Internet Connection!");
+      setState(() {
+        isConnect = false;
+      });
+      showToast("No Internet connection!");
+      print('not connected');
+    }
+  }
+
+
   /* String validateEmail(String? value) {
     String pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -480,9 +508,11 @@ class LoginView extends State<LoginActivity> {
         AuthData? authData = objectRes.data;
 
         App.putString(Cons.aToken,authData!.token.toString());
+        App.putBool(Cons.isLogin,true);
 
         print("=========================>" + jsonData.toString() + "");
 
+        //{message: User logged in successfully, data: {username: nur@gmail.com, token: eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJudXJAZ21haWwuY29tIiwiZXhwIjoxNjY1OTM3ODgwLCJpYXQiOjE2NjQ2NDE4ODB9.9eQ1niV1CfIdiD16kwQCX90j7AL0W_rCwEkCsU1aRerjJBG0sEwSQ0FYJO5p_GRRUft4Jk5BRTK7VpbnnONXug}}
         setState(() {
           is_loading = false;
         });
@@ -511,55 +541,7 @@ class LoginView extends State<LoginActivity> {
   }
 }
 
-  void signInApi(String email, String password, bool isAddlisting,
-      BuildContext buildContext) async {
-    Map map = {
-      "email": email,
-      "password": password,
-      //"fcm_token":""
-    };
 
-    try {
-      var response = await http.post(Uri.parse(Apis.loginApi), body: map);
-      //print("=========================>"+response.toString() + "");
-
-
-      if (response.statusCode == 200) {
-        var jsonData = json.decode(response.body);
-        //print("=========================>"+jsonData.toString() + "");
-
-        ObjectRes objectRes = ObjectRes.fromJson(jsonData);
-        if (objectRes.status_code == 1) {
-          UserDetails userDetails = UserDetails.fromJson(jsonData);
-          User? user = userDetails.user;
-
-          /* App.putString(Cons.uId,user!.iD.toString());
-          App.putString(Cons.uName,user.userLogin.toString());
-          App.putString(Cons.uEmail,user.userEmail.toString());
-          App.putString(Cons.uDisplayName,user.displayName.toString());
-          App.putString(Cons.userStatus,user.userStatus.toString());
-          App.putBool(Cons.isLogin,true);
-*/
-
-          Navigator.of(buildContext).pop();
-        }
-        print("=========================>" + jsonData.toString() + "");
-
-
-
-        print(response.body);
-      } else {
-       // Navigator.of(context, rootNavigator: true).pop();
-        print(response.body);
-       // showToast("Something wrong!");
-      }
-    } on Exception catch (_) {
-     // Navigator.of(context, rootNavigator: true).pop();
-
-     // showToast("Something wrong!");
-    }
-
-}
 
 goToNextPage(BuildContext context, bool isAddListing) async {
   print("goToNextPage");

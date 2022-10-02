@@ -112,7 +112,7 @@ class MainScreen extends State<MyHomePage> {
 
 
   Future<Timer> loadData() async {
-    return Timer(Duration(seconds: 10), goToNext);
+    return Timer(Duration(milliseconds: 6400), goToNext);
   }
 
   goToNext() async {

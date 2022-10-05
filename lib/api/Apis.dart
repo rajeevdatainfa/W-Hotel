@@ -15,7 +15,9 @@ class Apis{
   static const String forgetPassword=baseUrl + "forgot_password.php";
   static const String loginApi=baseUrl + "auth/login";
   static const String signUpApi=baseUrl + "user_register.php";
+  static const String busesSchedule=baseUrl + "buses";
   static const String restaurant=baseUrl + "restaurants";
+  static const String foodCategory=baseUrl + "restaurant/menu/";
 
 
 

@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hotels/api/Apis.dart';
+import 'package:hotels/model/FoodMenuRes.dart';
 import 'package:hotels/model/RestaurentItem.dart';
 import 'package:hotels/screens/AboutActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
@@ -15,6 +16,11 @@ import 'package:hotels/utils/Cons.dart';
 import 'package:http/http.dart' as http;
 
 class FoodDetailsActivity extends StatefulWidget {
+  String resId="0";
+  String resName="Food Items";
+
+  FoodDetailsActivity({Key? key, required this.resId, required this.resName}) : super(key: key);
+
 
 
   @override
@@ -22,13 +28,14 @@ class FoodDetailsActivity extends StatefulWidget {
 }
 
 class RestaurentView extends State<FoodDetailsActivity> {
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isLoding = false;
   double defaultFontSize = 14;
   double defaultIconSize = 17;
   bool isConnect = true;
   bool isLoaded = false;
-  List<RestaurentItem> _restaurentList = [];
+  List<MenuCategories> _foodList = [];
 
   @override
   void initState() {
@@ -43,7 +50,7 @@ class RestaurentView extends State<FoodDetailsActivity> {
           isLoaded = true;
         });
 
-        getRestaurentList();
+        getRestaurentList(widget.resId);
       } else {
         showToast("No Internet connection");
       }
@@ -63,7 +70,7 @@ class RestaurentView extends State<FoodDetailsActivity> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Col.primary_blue,
-        title: const Text('Food Safety', style: TextStyle(fontSize: 20.0, color: Colors.white),),
+        title: Text(widget.resName, style: TextStyle(fontSize: 20.0, color: Colors.white),),
         toolbarHeight: 70,
       ),
       body: SafeArea(
@@ -93,10 +100,10 @@ class RestaurentView extends State<FoodDetailsActivity> {
                     child: Padding(
                       padding: EdgeInsets.all(5.0),
                       child: ListView.builder(
-                        itemCount: _restaurentList.length,
+                        itemCount: _foodList.length,
                         //itemCount: _restaurentList.length,
                         scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) => _addAmountLayout(context, index, _restaurentList[index])
+                        itemBuilder: (context, index) => _category(context, index, _foodList[index])
 
                         //shrinkWrap: true,
                       ),
@@ -126,32 +133,63 @@ class RestaurentView extends State<FoodDetailsActivity> {
   }
 
 
-  Widget _addAmountLayout(BuildContext context, int index,RestaurentItem restaurentItem) {
+  Widget _category(BuildContext context, int index,MenuCategories menuCategories) {
+    return Padding(
+      padding: const EdgeInsets.all(2.0),
+
+      child:  Container(
+
+
+        child: Container(
+          alignment: Alignment.center,
+
+          //color: color,
+          child: Padding(
+            padding: EdgeInsets.all(1.0),
+            child: menuCategories.subCategoryFoodItems!.length>0?ListView.builder(
+                itemCount: menuCategories.subCategoryFoodItems!.length,
+                scrollDirection: Axis.vertical,
+                shrinkWrap: true,
+                physics: ClampingScrollPhysics(),
+                itemBuilder: (context, index) => _subCategory(context, index, menuCategories.subCategoryFoodItems![index])
+
+              //shrinkWrap: true,
+            ):Container(
+
+            ),
+          ),
+        ),
+      ),
+
+    );
+  }
+
+  Widget _subCategory(BuildContext context, int index,SubCategoryFoodItems sItems) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
 
       child:  Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                BorderRadius.circular(15.0),
-              ),
-              elevation:1,
-              child: GestureDetector(
-                  child: InkWell(
-                    onTap: () {
-                      goToNextPage(context, index);
-                    },
-                    child: Container(
-                      padding: EdgeInsets.all(20),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/background_card.png"),
-                          fit: BoxFit.cover,
-                        ),
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.circular(15.0),
+        ),
+        elevation:1,
+        child: GestureDetector(
+            child: InkWell(
+              onTap: () {
+                goToNextPage(context, index);
+              },
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15.0),
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/background_card.png"),
+                    fit: BoxFit.cover,
+                  ),
 
-                      ),
-                     /* decoration: BoxDecoration(
+                ),
+                /* decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
                         gradient: LinearGradient(
                           colors: [
@@ -162,127 +200,149 @@ class RestaurentView extends State<FoodDetailsActivity> {
                         ),
                       ),*/
 
-                      child: Container(
-                        alignment: Alignment.center,
+                child: Container(
 
-                        //color: color,
-                        child: Column(
+                  //color: color,
+                  child: Column(
 
-                          children: [
-                            //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
+                    children: [
+                      //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
 
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                restaurentItem.name!,
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  color: Col.white,
-                                  fontFamily: "RobotoBold"
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 8,),
-
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                restaurentItem.description!,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Col.white,
-                                    fontFamily: "RobotoRegular"
-                                ),
-                              ),
-                            ),
-                            SizedBox(height: 6,),
-
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "City: "+restaurentItem.city!,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Col.white_bg,
-                                    fontFamily: "RobotoRegular"
-                                ),
-                              ),
-                            ),
-                          ],
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          sItems.categoryName!,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Col.white,
+                              fontFamily: "RobotoBold"
+                          ),
                         ),
                       ),
-                    ),
-                  )
+                      SizedBox(height: 8,),
+
+                      Padding(
+                        padding: EdgeInsets.all(5.0),
+                        child: ListView.builder(
+                            itemCount: sItems.items!.length,
+                            //itemCount: _restaurentList.length,
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            physics: ClampingScrollPhysics(),
+                            itemBuilder: (context, index) => _itemDetails(context, index, sItems.items![index])
+
+                          //shrinkWrap: true,
+                        ),
+                      ),
+
+
+                    ],
+                  ),
+                ),
               ),
-            ),
+            )
+        ),
+      ),
 
     );
   }
 
+  Widget _itemDetails(BuildContext context, int index,MenuItems menuItems) {
+    return Padding(
+      padding: const EdgeInsets.all(1.0),
 
-  /* void signInApi(String text, String text2,bool isAddlisting,BuildContext buildContext) async{
+      child:  Card(
+        shape: RoundedRectangleBorder(
+          borderRadius:
+          BorderRadius.only(
+              bottomRight: Radius.circular(15),
+              topRight: Radius.circular(15),
+              topLeft: Radius.circular(30),
+              bottomLeft: Radius.circular(30),
+
+          )
+
+        ),
+        elevation:1,
+        child: GestureDetector(
+            child: InkWell(
+              onTap: () {
+                goToNextPage(context, index);
+              },
+              child: Container(
+                padding: EdgeInsets.all(10),
+               decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(15),
+                            topRight: Radius.circular(15),
+                            topLeft: Radius.circular(45),
+                            bottomLeft: Radius.circular(45)),
+                        gradient: LinearGradient(
+                          colors: [
+                            Col.white_bg,
+                            Col.white,
+                          ],
+
+                        ),
+                      ),
+
+                child: Container(
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.only(left: 12),
+                  //color: color,
+                  child: Column(
+
+                    children: [
+                      //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
+
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          menuItems.name!,
+                          style: TextStyle(
+                              fontSize: 16,
+                              color: Col.primary_gray,
+                              fontFamily: "RobotoBold"
+                          ),
+                        ),
+                      ),
 
 
-    Map map = {
-      "email":text,
-      "password":text2,
-      //"fcm_token":""
-    };
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          menuItems.description!,
+                          style: TextStyle(
+                              fontSize: 12,
+                              color: Col.primary_gray_light,
+                              fontFamily: "RobotoRegular"
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 2,),
 
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          "City: "+menuItems.city!,
+                          style: TextStyle(
+                              fontSize: 10,
+                              color: Col.primary_gray_light,
+                              fontFamily: "RobotoRegular"
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )
+        ),
+      ),
 
-    try{
-
-
-      var response = await http.post(Uri.parse(Apis.loginApi),body: map);
-      //print("=========================>"+response.toString() + "");
-
-
-      Navigator.of(context, rootNavigator: true).pop();
-      if(response.statusCode==200){
-        var jsonData = json.decode(response.body);
-        //print("=========================>"+jsonData.toString() + "");
-
-        ObjectRes objectRes = ObjectRes.fromJson(jsonData);
-        if(objectRes.status_code==1){
-
-
-          UserDetails userDetails = UserDetails.fromJson(jsonData);
-          User? user = userDetails.userData!.data;
-
-          App.putString(Cons.uId,user!.iD.toString());
-          App.putString(Cons.uName,user.userLogin.toString());
-          App.putString(Cons.uEmail,user.userEmail.toString());
-          App.putString(Cons.uDisplayName,user.displayName.toString());
-          App.putString(Cons.userStatus,user.userStatus.toString());
-          App.putBool(Cons.isLogin,true);
-
-
-          Navigator.of(buildContext).pop();
-
-        }
-        print("=========================>"+jsonData.toString() + "");
-
-
-        showToast(objectRes.message);
-
-        print(response.body);
-      }else{
-
-        Navigator.of(context, rootNavigator: true).pop();
-        print(response.body);
-        showToast("Something wrong!");
-      }
-
-    }on Exception catch (_){
-
-      Navigator.of(context, rootNavigator: true).pop();
-
-      showToast("Something wrong!");
-    }
-
-
+    );
   }
-*/
+
 
   Future<bool> isConnected() async {
     try {
@@ -348,7 +408,7 @@ class RestaurentView extends State<FoodDetailsActivity> {
   }
 
 
-  Future getRestaurentList() async {
+  Future getRestaurentList(String restaurentId) async {
 
     Map map = {
       "uid":App.getString(Cons.aToken),
@@ -362,10 +422,12 @@ class RestaurentView extends State<FoodDetailsActivity> {
     };
 
     print("request =====: " + map.toString() + "");
+    print("url =====: " + Apis.foodCategory+widget.resId);
+    http://wdoha-env.eba-fcmfzskx.ap-south-1.elasticbeanstalk.com/api/v1/restaurant/menu/1
 
 
       try {
-        var response = await http.get(Uri.parse(Apis.restaurant),headers: {
+        var response = await http.get(Uri.parse(Apis.foodCategory+widget.resId),headers: {
           "Authorization":"Bearer "+App.getString(Cons.aToken)
 
         } );
@@ -378,18 +440,24 @@ class RestaurentView extends State<FoodDetailsActivity> {
           try {
 
             Map<String,dynamic> parsed = json.decode(response.body);
-            RestaurentRes res = RestaurentRes.fromJson(parsed);
+            FoodMenuRes res = FoodMenuRes.fromJson(parsed);
             setState(() {
-              _restaurentList.clear();
+              _foodList.clear();
 
-              _restaurentList.addAll(res.data!);
+              _foodList.addAll(res.data!.categories!);
+
+              print("_foodList=====: "+ _foodList.length.toString() );
             });
 
             setState(() {
               isLoaded = false;
             });
-            print("getListingList__=====: "+ res.data!.length.toString() );
-            print("_restaurentList =====: "+ _restaurentList!.length.toString() );
+
+            if(_foodList.length==0){
+              showToast("Data not available!");
+            }
+            print("getListingList__=====: "+ res.data!.categories!.length.toString() );
+
 
           }on Exception catch (e){
             setState(() {
@@ -415,6 +483,18 @@ class RestaurentView extends State<FoodDetailsActivity> {
       }
 
 
+  }
+
+  void showToast(String massage){
+    Fluttertoast.showToast(
+        msg: massage,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.CENTER,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 }
 
@@ -445,14 +525,4 @@ goToNextPage(BuildContext context, int intex) async {
   }
 }
 
-void showToast(String massage){
-  Fluttertoast.showToast(
-      msg: massage,
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.grey,
-      textColor: Colors.white,
-      fontSize: 16.0
-  );
-}
+

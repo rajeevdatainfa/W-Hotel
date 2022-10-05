@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hotels/api/Apis.dart';
+import 'package:hotels/model/BusRes.dart';
 import 'package:hotels/model/RestaurentItem.dart';
 import 'package:hotels/screens/AboutActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
@@ -15,21 +16,21 @@ import 'package:hotels/utils/Col.dart';
 import 'package:hotels/utils/Cons.dart';
 import 'package:http/http.dart' as http;
 
-class RestaurentActivity extends StatefulWidget {
+class BusScheduleActivity extends StatefulWidget {
 
 
   @override
-  RestaurentView createState() =>RestaurentView();
+  BusScheduleView createState() =>BusScheduleView();
 }
 
-class RestaurentView extends State<RestaurentActivity> {
+class BusScheduleView extends State<BusScheduleActivity> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   bool _isLoding = false;
   double defaultFontSize = 14;
   double defaultIconSize = 17;
   bool isConnect = true;
   bool isLoaded = false;
-  List<RestaurentItem> _restaurentList = [];
+  List<BusItem> _busScheduleList = [];
 
   @override
   void initState() {
@@ -44,7 +45,7 @@ class RestaurentView extends State<RestaurentActivity> {
           isLoaded = true;
         });
 
-        getRestaurentList();
+        getBusesScheduleList();
       } else {
         showToast("No Internet connection");
       }
@@ -64,7 +65,7 @@ class RestaurentView extends State<RestaurentActivity> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Col.primary_blue,
-        title: const Text('Menu', style: TextStyle(fontSize: 20.0, color: Colors.white),),
+        title: const Text('Bus Schedule', style: TextStyle(fontSize: 20.0, color: Colors.white),),
         toolbarHeight: 70,
       ),
       body: SafeArea(
@@ -94,10 +95,10 @@ class RestaurentView extends State<RestaurentActivity> {
                     child: Padding(
                       padding: EdgeInsets.all(5.0),
                       child: ListView.builder(
-                        itemCount: _restaurentList.length,
+                        itemCount: _busScheduleList.length,
                         //itemCount: _restaurentList.length,
                         scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) => _addAmountLayout(context, index, _restaurentList[index])
+                        itemBuilder: (context, index) => _itemDetails(context, index, _busScheduleList[index])
 
                         //shrinkWrap: true,
                       ),
@@ -127,7 +128,7 @@ class RestaurentView extends State<RestaurentActivity> {
   }
 
 
-  Widget _addAmountLayout(BuildContext context, int index,RestaurentItem restaurentItem) {
+  Widget _itemDetails(BuildContext context, int index,BusItem busItem) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
 
@@ -140,10 +141,10 @@ class RestaurentView extends State<RestaurentActivity> {
               child: GestureDetector(
                   child: InkWell(
                     onTap: () {
-                      goToNextPage(context, 0,restaurentItem.id.toString(),restaurentItem.name!);
+                      //goToNextPage(context, 0,busItem.id.toString(),busItem.name!);
                     },
                     child: Container(
-                      padding: EdgeInsets.all(20),
+
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
                         image: DecorationImage(
@@ -163,54 +164,99 @@ class RestaurentView extends State<RestaurentActivity> {
                         ),
                       ),*/
 
-                      child: Container(
-                        alignment: Alignment.center,
-
-                        //color: color,
-                        child: Column(
-
-                          children: [
-                            //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
-
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                restaurentItem.name!,
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  color: Col.white,
-                                  fontFamily: "RobotoBold"
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            padding: EdgeInsets.all(2),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15.0),
+                                image: DecorationImage(
+                                  image: AssetImage("assets/images/background_card.png"),
+                                  fit: BoxFit.cover,
                                 ),
+
+                              ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(15.0),
+                              child: Image(
+                                image: new AssetImage(
+                                    "assets/images/bus_schedule.jpeg"),
+
+                                color: null,
+                                fit: BoxFit.fitHeight,
+
                               ),
                             ),
-                            SizedBox(height: 8,),
+                          ),
+                          Expanded(
+                            child: Container(
+                              alignment: Alignment.center,
+                              padding: EdgeInsets.only(left: 12),
 
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                restaurentItem.description!,
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Col.white,
-                                    fontFamily: "RobotoRegular"
-                                ),
+                              //color: color,
+                              child: Column(
+
+                                children: [
+                                  //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
+
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      busItem.busName! + "-"+busItem.busNumber!,
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        color: Col.white,
+                                        fontFamily: "RobotoBold"
+                                      ),
+                                    ),
+                                  ),
+
+
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(busItem.source! +" to "+
+                                      busItem.destination!,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: Col.white,
+                                          fontFamily: "RobotoRegular"
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(height: 2,),
+
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "Departure Time: "+busItem.departureTime!,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: Col.white_bg,
+                                          fontFamily: "RobotoRegular"
+                                      ),
+                                    ),
+                                  ),
+
+                                  SizedBox(height: 2,),
+
+                                  Container(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      "Arrival Time: "+busItem.arrivalTime!,
+                                      style: TextStyle(
+                                          fontSize: 12,
+                                          color: Col.white_bg,
+                                          fontFamily: "RobotoRegular"
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            SizedBox(height: 6,),
-
-                            Container(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "City: "+restaurentItem.city!,
-                                style: TextStyle(
-                                    fontSize: 14,
-                                    color: Col.white_bg,
-                                    fontFamily: "RobotoRegular"
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   )
@@ -349,7 +395,7 @@ class RestaurentView extends State<RestaurentActivity> {
   }
 
 
-  Future getRestaurentList() async {
+  Future getBusesScheduleList() async {
 
     Map map = {
       "uid":App.getString(Cons.aToken),
@@ -366,7 +412,7 @@ class RestaurentView extends State<RestaurentActivity> {
 
 
       try {
-        var response = await http.get(Uri.parse(Apis.restaurant),headers: {
+        var response = await http.get(Uri.parse(Apis.busesSchedule),headers: {
           "Authorization":"Bearer "+App.getString(Cons.aToken)
 
         } );
@@ -376,11 +422,11 @@ class RestaurentView extends State<RestaurentActivity> {
           try {
 
             Map<String,dynamic> parsed = json.decode(response.body);
-            RestaurentRes res = RestaurentRes.fromJson(parsed);
+            BusRes res = BusRes.fromJson(parsed);
             setState(() {
-              _restaurentList.clear();
+              _busScheduleList.clear();
 
-              _restaurentList.addAll(res.data!);
+              _busScheduleList.addAll(res.data!);
             });
 
             setState(() {

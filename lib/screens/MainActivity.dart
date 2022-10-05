@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotels/screens/AboutActivity.dart';
+import 'package:hotels/screens/BusScheduleActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
 import 'package:hotels/screens/MenuActivity.dart';
 import 'package:hotels/screens/RestuarentActivity.dart';
@@ -247,51 +248,57 @@ class HomeActivityView extends State<MainActivity> {
                                                           ),
                                                           Expanded(
 
-                                                            child: Container(
-                                                              clipBehavior: Clip.hardEdge,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.only(
-                                                                    bottomRight: Radius.circular(30.0)),
-                                                              ),
-                                                              alignment: Alignment.center,
-                                                              //color: color,
-                                                              child: Stack(
+                                                            child: InkWell(
 
-                                                                children: [
-                                                                  Container(
-                                                                      height: 130,
-                                                                      child: ClipRRect(
-                                                                        //borderRadius: BorderRadius.circular(15.0),
-                                                                        child: Image(
-                                                                          image: new AssetImage(
-                                                                              "assets/images/bus_schedule.jpeg"),
+                                                              onTap:  () {
+                                                                  goToNextPage(context, 2);
+                                                                  },
+                                                              child: Container(
+                                                                clipBehavior: Clip.hardEdge,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.only(
+                                                                      bottomRight: Radius.circular(30.0)),
+                                                                ),
+                                                                alignment: Alignment.center,
+                                                                //color: color,
+                                                                child: Stack(
 
-                                                                          color: null,
-                                                                          fit: BoxFit.cover,
-                                                                          alignment:
-                                                                          Alignment
-                                                                              .center,
-                                                                        ),
-                                                                      )
-                                                                  ),
+                                                                  children: [
+                                                                    Container(
+                                                                        height: 130,
+                                                                        child: ClipRRect(
+                                                                          //borderRadius: BorderRadius.circular(15.0),
+                                                                          child: Image(
+                                                                            image: new AssetImage(
+                                                                                "assets/images/bus_schedule.jpeg"),
 
-                                                                  Container(
-                                                                    height: 130,
-                                                                    color: Col.tranparent,
-                                                                    alignment: Alignment.bottomCenter,
-                                                                    padding: EdgeInsets.only(bottom: 6),
-                                                                    child: Text(
-                                                                      "Bus Schedule",
-                                                                      style: TextStyle(
-                                                                          fontSize: 16,
-                                                                          color: Col.white,
-                                                                          fontFamily:
-                                                                          "RobotoExtraBold"),
+                                                                            color: null,
+                                                                            fit: BoxFit.cover,
+                                                                            alignment:
+                                                                            Alignment
+                                                                                .center,
+                                                                          ),
+                                                                        )
                                                                     ),
-                                                                  ),
+
+                                                                    Container(
+                                                                      height: 130,
+                                                                      color: Col.tranparent,
+                                                                      alignment: Alignment.bottomCenter,
+                                                                      padding: EdgeInsets.only(bottom: 6),
+                                                                      child: Text(
+                                                                        "Bus Schedule",
+                                                                        style: TextStyle(
+                                                                            fontSize: 16,
+                                                                            color: Col.white,
+                                                                            fontFamily:
+                                                                            "RobotoExtraBold"),
+                                                                      ),
+                                                                    ),
 
 
-                                                                ],
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -332,51 +339,56 @@ class HomeActivityView extends State<MainActivity> {
                                                         children: [
                                                           Expanded(
 
-                                                            child: Container(
-                                                              clipBehavior: Clip.hardEdge,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.only(
-                                                                    topLeft: Radius.circular(30.0)),
-                                                              ),
-                                                              alignment: Alignment.center,
-                                                              //color: color,
-                                                              child: Stack(
+                                                            child: InkWell(
+                                                              onTap: () {
+                                                                goToNextPage(context, 4);
+                                                              },
+                                                              child: Container(
+                                                                clipBehavior: Clip.hardEdge,
+                                                                decoration: BoxDecoration(
+                                                                  borderRadius: BorderRadius.only(
+                                                                      topLeft: Radius.circular(30.0)),
+                                                                ),
+                                                                alignment: Alignment.center,
+                                                                //color: color,
+                                                                child: Stack(
 
-                                                                children: [
-                                                                  Container(
-                                                                      height: 130,
-                                                                      child: ClipRRect(
-                                                                        //borderRadius: BorderRadius.circular(15.0),
-                                                                        child: Image(
-                                                                          image: new AssetImage(
-                                                                              "assets/images/menu.jpeg"),
+                                                                  children: [
+                                                                    Container(
+                                                                        height: 130,
+                                                                        child: ClipRRect(
+                                                                          //borderRadius: BorderRadius.circular(15.0),
+                                                                          child: Image(
+                                                                            image: new AssetImage(
+                                                                                "assets/images/menu.jpeg"),
 
-                                                                          color: null,
-                                                                          fit: BoxFit.fill,
-                                                                          alignment:
-                                                                          Alignment
-                                                                              .center,
-                                                                        ),
-                                                                      )
-                                                                  ),
-
-                                                                  Container(
-                                                                    height: 130,
-                                                                    color: Col.tranparent,
-                                                                    alignment: Alignment.bottomCenter,
-                                                                    padding: EdgeInsets.only(bottom: 6),
-                                                                    child: Text(
-                                                                      "Menu",
-                                                                      style: TextStyle(
-                                                                          fontSize: 16,
-                                                                          color: Col.white,
-                                                                          fontFamily:
-                                                                          "RobotoExtraBold"),
+                                                                            color: null,
+                                                                            fit: BoxFit.fill,
+                                                                            alignment:
+                                                                            Alignment
+                                                                                .center,
+                                                                          ),
+                                                                        )
                                                                     ),
-                                                                  ),
+
+                                                                    Container(
+                                                                      height: 130,
+                                                                      color: Col.tranparent,
+                                                                      alignment: Alignment.bottomCenter,
+                                                                      padding: EdgeInsets.only(bottom: 6),
+                                                                      child: Text(
+                                                                        "Menu",
+                                                                        style: TextStyle(
+                                                                            fontSize: 16,
+                                                                            color: Col.white,
+                                                                            fontFamily:
+                                                                            "RobotoExtraBold"),
+                                                                      ),
+                                                                    ),
 
 
-                                                                ],
+                                                                  ],
+                                                                ),
                                                               ),
                                                             ),
                                                           ),
@@ -775,14 +787,20 @@ goToNextPage(BuildContext context, int intex) async {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MenuActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   } else if (intex == 2) {
-    // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => AboutActivity()));
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => BusScheduleActivity()));
 
   } else if (intex == 3) {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",)));
 
-  } else if (intex == 5) {
+  }
+  else if (intex == 4) {
     //Food
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
+    // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
+    //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
+  }else if (intex == 5) {
+    //Food
+    //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
     // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   } else {}

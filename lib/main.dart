@@ -82,7 +82,8 @@ class SplashScreenState extends State<MyHomePage> {
           MaterialPageRoute(builder: (context) => LandingActivity()));
     } else
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => SplashActivity()));
+          //MaterialPageRoute(builder: (context) => SplashActivity()));
+          MaterialPageRoute(builder: (context) => LandingActivity()));
     //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }
 }

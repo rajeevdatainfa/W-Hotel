@@ -10,6 +10,7 @@ import 'package:hotels/screens/FifaActivity.dart';
 import 'package:hotels/screens/MenuActivity.dart';
 import 'package:hotels/screens/RestuarentActivity.dart';
 import 'package:hotels/screens/ScheduleActivity.dart';
+import 'package:hotels/screens/TrainingActivity.dart';
 import 'package:hotels/utils/Col.dart';
 
 class MainActivity extends StatefulWidget {
@@ -458,47 +459,52 @@ class HomeActivityView extends State<MainActivity> {
                                                     width: 10,
                                                   ),
                                                   Expanded(
-                                                    child: Container(
-                                                      clipBehavior: Clip.hardEdge,
-                                                      decoration: BoxDecoration(
-                                                        borderRadius: BorderRadius.only(
-                                                            bottomRight: Radius.circular(30.0),
-                                                            topRight: Radius.circular(30.0)),
-                                                      ),
-                                                      child: Stack(
+                                                    child: InkWell(
+                                                      onTap: () {
+                                                        goToNextPage(context, 6);
+                                                      },
+                                                      child: Container(
+                                                        clipBehavior: Clip.hardEdge,
+                                                        decoration: BoxDecoration(
+                                                          borderRadius: BorderRadius.only(
+                                                              bottomRight: Radius.circular(30.0),
+                                                              topRight: Radius.circular(30.0)),
+                                                        ),
+                                                        child: Stack(
 
-                                                        children: [
-                                                          Container(
+                                                          children: [
+                                                            Container(
+                                                                height: 260,
+
+
+                                                                child: ClipRRect(
+                                                                  //borderRadius: BorderRadius.circular(15.0),
+                                                                  child: Image(
+                                                                    image: new AssetImage(
+                                                                        "assets/images/taining.jpeg"),
+
+                                                                    color: null,
+                                                                    fit: BoxFit.fitHeight,
+
+                                                                  ),
+                                                                )),
+
+                                                            Container(
                                                               height: 260,
-
-
-                                                              child: ClipRRect(
-                                                                //borderRadius: BorderRadius.circular(15.0),
-                                                                child: Image(
-                                                                  image: new AssetImage(
-                                                                      "assets/images/taining.jpeg"),
-
-                                                                  color: null,
-                                                                  fit: BoxFit.fitHeight,
-
-                                                                ),
-                                                              )),
-
-                                                          Container(
-                                                            height: 260,
-                                                            color: Col.tranparent,
-                                                            alignment: Alignment.bottomCenter,
-                                                            padding: EdgeInsets.only(bottom: 10),
-                                                            child: Text(
-                                                              "Training",
-                                                              style: TextStyle(
-                                                                  fontSize: 16,
-                                                                  color: Col.white,
-                                                                  fontFamily:
-                                                                  "RobotoExtraBold"),
+                                                              color: Col.tranparent,
+                                                              alignment: Alignment.bottomCenter,
+                                                              padding: EdgeInsets.only(bottom: 10),
+                                                              child: Text(
+                                                                "Training",
+                                                                style: TextStyle(
+                                                                    fontSize: 16,
+                                                                    color: Col.white,
+                                                                    fontFamily:
+                                                                    "RobotoExtraBold"),
+                                                              ),
                                                             ),
-                                                          ),
-                                                        ],
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -781,7 +787,8 @@ goToNextPage(BuildContext context, int intex) async {
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
         builder: (context) => FifaActivity(
               url:
-                  "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",
+                  "http://www.pdf995.com/samples/pdf.pdf",
+                  //"https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",
             )));
   } else if (intex == 1) {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MenuActivity()));
@@ -796,6 +803,11 @@ goToNextPage(BuildContext context, int intex) async {
   else if (intex == 4) {
     //Food
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
+    // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
+    //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
+  }else if (intex == 6) {
+    //Food
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => TrainingActivity()));
     // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   }else if (intex == 5) {

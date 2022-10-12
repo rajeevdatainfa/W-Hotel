@@ -5,6 +5,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hotels/screens/AboutActivity.dart';
+import 'package:hotels/screens/BusListActivity.dart';
 import 'package:hotels/screens/BusScheduleActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
 import 'package:hotels/screens/MenuActivity.dart';
@@ -794,7 +795,8 @@ goToNextPage(BuildContext context, int intex) async {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MenuActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   } else if (intex == 2) {
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => BusScheduleActivity()));
+   // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => BusScheduleActivity()));
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => BusListActivity()));
 
   } else if (intex == 3) {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",)));

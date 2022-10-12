@@ -5,9 +5,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hotels/api/Apis.dart';
+import 'package:hotels/model/BusScheduleRes.dart';
 import 'package:hotels/model/RestaurentItem.dart';
 import 'package:hotels/model/TrainingRes.dart';
 import 'package:hotels/screens/AboutActivity.dart';
+import 'package:hotels/screens/BusDetailsActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
 import 'package:hotels/screens/FoodDetailsActivity.dart';
 import 'package:hotels/screens/TrainingActivity.dart';
@@ -17,21 +19,19 @@ import 'package:hotels/utils/Col.dart';
 import 'package:hotels/utils/Cons.dart';
 import 'package:http/http.dart' as http;
 
-class TrainingListActivity extends StatefulWidget {
+class BusListActivity extends StatefulWidget {
 
 
   @override
-  TrainingListView createState() =>TrainingListView();
+  BusListActivityView createState() =>BusListActivityView();
 }
 
-class TrainingListView extends State<TrainingListActivity> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  bool _isLoding = false;
+class BusListActivityView extends State<BusListActivity> {
   double defaultFontSize = 14;
   double defaultIconSize = 17;
   bool isConnect = true;
   bool isLoaded = false;
-  List<TrainingDetails> _tList = [];
+  List<BusDetails> _tList = [];
 
   @override
   void initState() {
@@ -46,7 +46,7 @@ class TrainingListView extends State<TrainingListActivity> {
           isLoaded = true;
         });
 
-        getTrainingList();
+        getBusList();
       } else {
         showToast("No Internet connection");
       }
@@ -66,18 +66,12 @@ class TrainingListView extends State<TrainingListActivity> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Col.primary_blue,
-        title: const Text('Training', style: TextStyle(fontSize: 20.0, color: Colors.white),),
+        title: const Text('Bus Schedule', style: TextStyle(fontSize: 20.0, color: Colors.white),),
         toolbarHeight: 70,
       ),
       body: SafeArea(
         child: Container(
-         /* decoration: BoxDecoration(
-            image: DecorationImage(
-              //image: AssetImage("assets/images/menu_orders.jpg"),
-              image: AssetImage("assets/images/m1.png"),
-              fit: BoxFit.cover,
-            ),
-          ),*/
+
           child: isLoaded==false? Container(
               color: Col.white_bg,
               height: height,
@@ -90,7 +84,7 @@ class TrainingListView extends State<TrainingListActivity> {
                         itemCount: _tList.length,
                         //itemCount: _restaurentList.length,
                         scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) => _addAmountLayout(context, index, _tList[index])
+                        itemBuilder: (context, index) => _itemLayout(context, index, _tList[index])
 
                         //shrinkWrap: true,
                       ),
@@ -119,7 +113,7 @@ class TrainingListView extends State<TrainingListActivity> {
   }
 
 
-  Widget _addAmountLayout(BuildContext context, int index,TrainingDetails restaurentItem) {
+  Widget _itemLayout(BuildContext context, int index,BusDetails restaurentItem) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
 
@@ -135,7 +129,7 @@ class TrainingListView extends State<TrainingListActivity> {
                       goToNextPage(context, 0,restaurentItem.file!.url!,restaurentItem.name!);
                     },
                     child: Container(
-                      padding: EdgeInsets.all(20),
+
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15.0),
                         image: DecorationImage(
@@ -157,67 +151,61 @@ class TrainingListView extends State<TrainingListActivity> {
 
                       child: Container(
                         alignment: Alignment.center,
+                        height: 100,
 
                         //color: color,
                         child: Row(
                           children: [
                             Container(
-                              width: 100,
+                              height: 100,
                               alignment: Alignment.centerLeft,
                               child:ClipRRect(
                                 borderRadius: BorderRadius.circular(15.0),
                                 child: Image.network(
                                   restaurentItem.image!.url!,
-                                  height: 80.0,
-                                  width: 80.0,
+                                  height: 100.0,
+                                  width: 120.0,
                                   fit: BoxFit.fill,
                                 ),
                               ),
                             ),
                             Expanded(
-                              child: Column(
+                              child: Container(
+                                margin: EdgeInsets.only(left: 15,right: 10,top: 10,bottom: 10),
+                                child: Column(
 
-                                children: [
-                                  //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
+                                  children: [
+                                    //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
 
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      restaurentItem.name!,
-                                      style: TextStyle(
-                                        fontSize: 22,
-                                        color: Col.white,
-                                        fontFamily: "RobotoBold"
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        restaurentItem.name!,
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          fontSize: 20,
+                                          color: Col.white,
+                                          fontFamily: "RobotoBold"
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  SizedBox(height: 8,),
+                                    SizedBox(height: 10,),
 
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      restaurentItem.description!,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Col.white,
-                                          fontFamily: "RobotoRegular"
+                                    Container(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text(
+                                        restaurentItem.description!,
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            color: Col.white,
+                                            fontFamily: "RobotoRegular"
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  /*SizedBox(height: 6,),
 
-                                  Container(
-                                    alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      "Status: "+restaurentItem.status!,
-                                      style: TextStyle(
-                                          fontSize: 12,
-                                          color: Col.white,
-                                          fontFamily: "RobotoRegular"
-                                      ),
-                                  ),
-                                  )*/
-                                ],
+
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -296,7 +284,7 @@ class TrainingListView extends State<TrainingListActivity> {
   }
 
 
-  Future getTrainingList() async {
+  Future getBusList() async {
 
     Map map = {
       "uid":App.getString(Cons.aToken),
@@ -313,7 +301,7 @@ class TrainingListView extends State<TrainingListActivity> {
 
 
       try {
-        var response = await http.get(Uri.parse(Apis.training),headers: {
+        var response = await http.get(Uri.parse(Apis.busSchedule),headers: {
           "Authorization":"Bearer "+App.getString(Cons.aToken)
 
         } );
@@ -324,7 +312,7 @@ class TrainingListView extends State<TrainingListActivity> {
           try {
 
             Map<String,dynamic> parsed = json.decode(response.body);
-            TrainingRes res = TrainingRes.fromJson(parsed);
+            BusScheduleRes res = BusScheduleRes.fromJson(parsed);
             setState(() {
               _tList.clear();
 
@@ -370,24 +358,13 @@ goToNextPage(BuildContext context, int intex,String url,String tName) async {
 
   if (intex == 0) {
 
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => TrainingActivity(url: url,tName: tName,)));
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => BusDetailsActivity(url: url,tName: tName,)));
 
     }else if(intex == 1){
 
     ////Navigator.of(context).push(MaterialPageRoute(builder: (context) => DoctorActivity()));
   }
-  else if(intex == 2){
 
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => AboutActivity()));
-
-  }
-  else if(intex == 3){
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "",)));
-    //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => AboutActivity()));
-
-  }else {
-
-  }
 }
 
 void showToast(String massage){

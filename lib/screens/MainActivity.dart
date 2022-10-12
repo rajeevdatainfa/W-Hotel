@@ -11,6 +11,7 @@ import 'package:hotels/screens/MenuActivity.dart';
 import 'package:hotels/screens/RestuarentActivity.dart';
 import 'package:hotels/screens/ScheduleActivity.dart';
 import 'package:hotels/screens/TrainingActivity.dart';
+import 'package:hotels/screens/TrainingListActivity.dart';
 import 'package:hotels/utils/Col.dart';
 
 class MainActivity extends StatefulWidget {
@@ -787,8 +788,7 @@ goToNextPage(BuildContext context, int intex) async {
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
         builder: (context) => FifaActivity(
               url:
-                  "http://www.pdf995.com/samples/pdf.pdf",
-                  //"https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",
+                  "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",
             )));
   } else if (intex == 1) {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MenuActivity()));
@@ -807,7 +807,7 @@ goToNextPage(BuildContext context, int intex) async {
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   }else if (intex == 6) {
     //Food
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => TrainingActivity()));
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => TrainingListActivity()));
     // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   }else if (intex == 5) {

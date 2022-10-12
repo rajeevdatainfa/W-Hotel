@@ -12,6 +12,7 @@ import 'theme/color.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await App.getInstance();
 
   //await Firebase.initializeApp();
@@ -82,8 +83,8 @@ class SplashScreenState extends State<MyHomePage> {
           MaterialPageRoute(builder: (context) => LandingActivity()));
     } else
       Navigator.of(context).pushReplacement(
-          //MaterialPageRoute(builder: (context) => SplashActivity()));
-          MaterialPageRoute(builder: (context) => LandingActivity()));
+          MaterialPageRoute(builder: (context) => SplashActivity()));
+         // MaterialPageRoute(builder: (context) => LandingActivity()));
     //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=> SplashSliderActivity()));
   }
 }

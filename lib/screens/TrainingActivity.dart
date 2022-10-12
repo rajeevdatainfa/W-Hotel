@@ -22,10 +22,15 @@ import 'package:http/http.dart' as http;
 
 import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 /*import 'package:flutter_pdfview/flutter_pdfview.dart';*/
 
 class TrainingActivity extends StatefulWidget {
 
+  String url="";
+  String tName="";
+
+  TrainingActivity({Key? key, required this.url, required this.tName}) : super(key: key);
 
   @override
   TrainingView createState() =>TrainingView();
@@ -37,7 +42,7 @@ class TrainingView extends State<TrainingActivity> {
   double defaultFontSize = 14;
   double defaultIconSize = 17;
   bool isConnect = true;
-  bool isLoaded = true;
+  bool isLoaded = false;
   List<RestaurentItem> _restaurentList = [];
   String pathPDF = "";
   String landscapePathPdf = "";
@@ -55,6 +60,7 @@ class TrainingView extends State<TrainingActivity> {
   int _totalPages = 0;
   int _currentPage = 0;
   bool pdfReady = false;
+
 
   late PDFViewController _pdfViewController;
 
@@ -102,12 +108,12 @@ class TrainingView extends State<TrainingActivity> {
       });
     });*/
 
-    createFileOfPdfUrl().then((f) {
+  /*  createFileOfPdfUrl().then((f) {
       setState(() {
         isLoaded = false;
         remotePDFpath = f.path;
       });
-    });
+    });*/
 
 
 
@@ -220,7 +226,7 @@ class TrainingView extends State<TrainingActivity> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Col.primary_blue,
-        title: const Text('Training', style: TextStyle(fontSize: 20.0, color: Colors.white),),
+        title: Text(widget.tName, style: TextStyle(fontSize: 20.0, color: Colors.white),),
         toolbarHeight: 70,
       ),
       body: SafeArea(
@@ -247,9 +253,16 @@ class TrainingView extends State<TrainingActivity> {
                   ),
 
                   Expanded(
-                    child: remotePDFpath!=""?Padding(
+                    child: remotePDFpath==""?Padding(
                       padding: EdgeInsets.all(5.0),
-                      child: PDFView(
+                      child: Container(
+                          child: SfPdfViewer.network(
+                              widget.url,
+                              canShowScrollHead: false,
+                              canShowScrollStatus: false)),
+
+
+                      /*child: PDFView(
                         filePath: urlPDFPath,
                         autoSpacing: true,
                         enableSwipe: true,
@@ -270,14 +283,14 @@ class TrainingView extends State<TrainingActivity> {
                             _pdfViewController = vc;
                           });
                         },
-                        /*onPageChanged: (int page, int total) {
+                        *//*onPageChanged: (int page, int total) {
                           setState(() {
                             _currentPage = page;
                           });
-                        },*/
+                        },*//*
                         onPageError: (page, e) {},
                       ),
-
+*/
 
                       /*PDFView(
                         filePath: remotePDFpath,
@@ -495,70 +508,70 @@ class TrainingView extends State<TrainingActivity> {
     );
   }
 
-
-  /* void signInApi(String text, String text2,bool isAddlisting,BuildContext buildContext) async{
-
+  Future getTrainingList() async {
 
     Map map = {
-      "email":text,
-      "password":text2,
-      //"fcm_token":""
+      "uid":App.getString(Cons.aToken),
+
     };
 
+    var header = {
+      "Content-Type":"application/json",
+      "Authorization":"Bearer "+App.getString(Cons.aToken)
 
-    try{
+    };
 
-
-      var response = await http.post(Uri.parse(Apis.loginApi),body: map);
-      //print("=========================>"+response.toString() + "");
-
-
-      Navigator.of(context, rootNavigator: true).pop();
-      if(response.statusCode==200){
-        var jsonData = json.decode(response.body);
-        //print("=========================>"+jsonData.toString() + "");
-
-        ObjectRes objectRes = ObjectRes.fromJson(jsonData);
-        if(objectRes.status_code==1){
+    print("request =====: " + map.toString() + "");
 
 
-          UserDetails userDetails = UserDetails.fromJson(jsonData);
-          User? user = userDetails.userData!.data;
+    try {
+      var response = await http.get(Uri.parse(Apis.restaurant),headers: {
+        "Authorization":"Bearer "+App.getString(Cons.aToken)
 
-          App.putString(Cons.uId,user!.iD.toString());
-          App.putString(Cons.uName,user.userLogin.toString());
-          App.putString(Cons.uEmail,user.userEmail.toString());
-          App.putString(Cons.uDisplayName,user.displayName.toString());
-          App.putString(Cons.userStatus,user.userStatus.toString());
-          App.putBool(Cons.isLogin,true);
+      } );
+
+      if (response.statusCode == 200) {
+        print("response =====: " + response.body.toString() + "");
+        try {
+
+          Map<String,dynamic> parsed = json.decode(response.body);
+          RestaurentRes res = RestaurentRes.fromJson(parsed);
+          setState(() {
+            _restaurentList.clear();
+
+            _restaurentList.addAll(res.data!);
+          });
+
+          setState(() {
+            isLoaded = false;
+          });
 
 
-          Navigator.of(buildContext).pop();
-
+        }on Exception catch (e){
+          setState(() {
+            isLoaded = false;
+          });
+          print('Exception=== ' + e.toString());
         }
-        print("=========================>"+jsonData.toString() + "");
 
 
-        showToast(objectRes.message);
 
-        print(response.body);
+
       }else{
-
-        Navigator.of(context, rootNavigator: true).pop();
-        print(response.body);
-        showToast("Something wrong!");
+        setState(() {
+          isLoaded = false;
+        });
       }
+    } on Exception catch (e) {
+      print('Exception==' + e.toString());
 
-    }on Exception catch (_){
-
-      Navigator.of(context, rootNavigator: true).pop();
-
-      showToast("Something wrong!");
+      setState(() {
+        isLoaded = false;
+      });
     }
 
 
   }
-*/
 
   Future<bool> isConnected() async {
     try {

@@ -180,7 +180,7 @@ class LandingActivityView extends State<LandingActivity> {
                                           alignment: Alignment.center,
                                           padding: EdgeInsets.only(bottom: 6,top: 6),
                                           child: Text(
-                                            "Host Country Media Center at Msheire",
+                                            "Host Country Media Center at Msheireb",
                                             style: TextStyle(
                                                 fontSize: 18,
                                                 color: Col.primary_black,

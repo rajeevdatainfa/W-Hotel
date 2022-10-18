@@ -9,10 +9,12 @@ import 'package:hotels/screens/BusListActivity.dart';
 import 'package:hotels/screens/BusScheduleActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
 import 'package:hotels/screens/MenuActivity.dart';
+import 'package:hotels/screens/RestaurentListActivity.dart';
 import 'package:hotels/screens/RestuarentActivity.dart';
 import 'package:hotels/screens/ScheduleActivity.dart';
 import 'package:hotels/screens/TrainingActivity.dart';
 import 'package:hotels/screens/TrainingListActivity.dart';
+import 'package:hotels/screens/WelcomeActivity.dart';
 import 'package:hotels/utils/Col.dart';
 
 class MainActivity extends StatefulWidget {
@@ -215,7 +217,7 @@ class HomeActivityView extends State<MainActivity> {
                                                                         //borderRadius: BorderRadius.circular(15.0),
                                                                         child: Image(
                                                                           image: new AssetImage(
-                                                                              "assets/images/outlet.jpeg"),
+                                                                              "assets/images/ic_outlets.png"),
 
                                                                           color: null,
                                                                           fit: BoxFit.fill,
@@ -232,7 +234,7 @@ class HomeActivityView extends State<MainActivity> {
                                                                     alignment: Alignment.bottomCenter,
                                                                     padding: EdgeInsets.only(bottom: 6),
                                                                     child: Text(
-                                                                      "B&F Outlet",
+                                                                      "Outlets",
                                                                       style: TextStyle(
                                                                           fontSize: 16,
                                                                           color: Col.white,
@@ -545,7 +547,7 @@ class HomeActivityView extends State<MainActivity> {
                                                             //borderRadius: BorderRadius.circular(15.0),
                                                             child: Image(
                                                               image: new AssetImage(
-                                                                  "assets/images/stop.jpeg"),
+                                                                  "assets/images/ic_sos.jpg"),
 
                                                               color: null,
                                                               fit: BoxFit.fitWidth,
@@ -559,7 +561,7 @@ class HomeActivityView extends State<MainActivity> {
                                                         alignment: Alignment.bottomCenter,
                                                         padding: EdgeInsets.only(bottom: 2),
                                                         child: Text(
-                                                          "Sop",
+                                                          "Important Announcements",
                                                           style: TextStyle(
                                                               fontSize: 18,
                                                               color: Col.white,
@@ -787,10 +789,8 @@ goToNextPage(BuildContext context, int intex) async {
   if (intex == 0) {
     // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://w-hotels.marriott.com/",)));
     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
-        builder: (context) => FifaActivity(
-              url:
-                  "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",
-            )));
+        builder: (context) => WelcomeActivity()));
+    //builder: (context) => FifaActivity(url: "https://www.fifa.com/fifaplus/en/tournaments/mens/worldcup/qatar2022",)));
   } else if (intex == 1) {
     //  Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => MenuActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
@@ -804,8 +804,8 @@ goToNextPage(BuildContext context, int intex) async {
   }
   else if (intex == 4) {
     //Food
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
-    // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
+    //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
+     Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentListActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   }else if (intex == 6) {
     //Food

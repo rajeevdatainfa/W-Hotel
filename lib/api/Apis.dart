@@ -5,9 +5,10 @@ class Apis{
 
 
   //static const String baseUrl="https://www.welcometograinofsalt.ca/API/frontend/";
- // static const String baseUrl="http://wdoha20sep-env.eba-tdptfiqp.us-east-1.elasticbeanstalk.com/api/v1/auth/";
-  static const String baseUrl="http://wdoha-env.eba-fcmfzskx.ap-south-1.elasticbeanstalk.com/api/v1/";
-  static const String baseUrl2="http://wdoha-env.eba-fcmfzskx.ap-south-1.elasticbeanstalk.com/api/v2/";
+  static const String baseUrl="https://apnapasand.in/api/v1/";
+  static const String baseUrl2="https://apnapasand.in/api/v2/";
+  //static const String baseUrl="http://wdoha-env.eba-fcmfzskx.ap-south-1.elasticbeanstalk.com/api/v1/";
+  //static const String baseUrl2="http://wdoha-env.eba-fcmfzskx.ap-south-1.elasticbeanstalk.com/api/v2/";
   //static const String baseUrl="http://wdoha-env.eba-fcmfzskx.ap-south-1.elasticbeanstalk.com/swagger-ui/index.html";
 
   static const String payment=baseUrl + "";
@@ -20,6 +21,7 @@ class Apis{
   static const String restaurant=baseUrl + "restaurants";
   static const String training=baseUrl + "trainings/";
   static const String busSchedule=baseUrl2 + "buses";
+  static const String restaurentList=baseUrl2 + "restaurants";
   static const String foodCategory=baseUrl + "restaurant/menu/";
 
 

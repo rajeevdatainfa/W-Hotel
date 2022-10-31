@@ -83,19 +83,17 @@ class TrainingListView extends State<TrainingListActivity> {
               height: height,
               margin: EdgeInsets.only(left: 15.0,right: 15),
 
-              child: Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: ListView.builder(
-                        itemCount: _tList.length,
-                        //itemCount: _restaurentList.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) => _addAmountLayout(context, index, _tList[index])
+              child: Padding(
+                padding: EdgeInsets.all(5.0),
+                child: ListView.builder(
+                    itemCount: _tList.length,
+                    //itemCount: _restaurentList.length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) => _addAmountLayout(context, index, _tList[index])
 
-                        //shrinkWrap: true,
-                      ),
-                    ),
-                  ),
+                  //shrinkWrap: true,
+                ),
+              ),
 
           ): Container(
             width: width,

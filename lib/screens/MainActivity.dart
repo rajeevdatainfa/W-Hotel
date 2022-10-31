@@ -42,619 +42,536 @@ class HomeActivityView extends State<MainActivity> {
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         child: Container(
-          /*decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/splash.png"),
-              fit: BoxFit.cover,
-            ),
-          ),*/
-          child: Stack(
+
+
+          child: Column(
             children: [
               Container(
-                width: width,
-                height: height,
-                color: Col.white,
-                child: Container(
-                  height: 130,
-                  alignment: Alignment.topCenter,
-                  child: Image(
-                    image: new AssetImage("assets/images/hader.jpg"),
-                    color: null,
-                    fit: BoxFit.fitWidth,
-                  ),
+                height: 180,
+                child: Stack(
+                  children: [
+                    Container(
+                      width: width,
+                      height: height,
+                      color: Col.white,
+                      child: Container(
+                        height: 130,
+                        alignment: Alignment.topCenter,
+                        child: Image(
+                          image: new AssetImage("assets/images/hader.jpg"),
+                          color: null,
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
+                    ),
+
+                    Container(
+                      margin: EdgeInsets.only(top: 35),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: <Widget>[
+                          Container(
+                            width: 90,
+                            child: Image(
+                              image: new AssetImage("assets/images/logo.png"),
+                              color: null,
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
+                          Container(
+
+                            alignment: Alignment.bottomCenter,
+                            padding: EdgeInsets.only(bottom: 10,top: 5),
+                            child: Text(
+                              "CATEGORIES",
+                              style: TextStyle(
+                                  fontSize: 16,
+                                  color: Col.white,
+                                  fontFamily:
+                                  "RobotoExtraBold"),
+                            ),
+                          ),
+
+
+                        ],
+                      ),
+                    )
+
+                  ],
                 ),
               ),
-              Container(
-                //color: Col.white_t1,
-                /*decoration: BoxDecoration(
-                  image:  DecorationImage(
-                    image: AssetImage("assets/images/login.png"),
-                    fit: BoxFit.fill,
-                  ),
+              SizedBox(
+                height: 10,
+              ),
 
-                ),*/
-                child: Container(
-                  child: Column(
-                    children: [
-                      Container(
-                          child: InkWell(
-                        child: Container(
-                          padding: EdgeInsets.only(left: 20,top: 20),
-                          child: Align(
-                            alignment: Alignment.topLeft,
-                            /*child: Icon(Icons.menu,color: Col.white,),*/
-                          ),
-                        ),
-                        onTap: () {
-                         // Navigator.pop(context);
-                        },
-                      ),
-                          ),
-                      Flexible(
-                          child: Container(
-                           margin: EdgeInsets.only(top: 35),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  width: 90,
-                                  child: Image(
-                                    image: new AssetImage("assets/images/logo.png"),
-                                    color: null,
-                                    fit: BoxFit.fitWidth,
-                                  ),
-                                ),
-                                Container(
+                Expanded(
+                  child: SingleChildScrollView(
 
-                                  alignment: Alignment.bottomCenter,
-                                  padding: EdgeInsets.only(bottom: 10,top: 5),
-                                  child: Text(
-                                    "CATEGORIES",
-                                    style: TextStyle(
-                                        fontSize: 16,
-                                        color: Col.white,
-                                        fontFamily:
-                                        "RobotoExtraBold"),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                                Expanded(
-                                  child: SingleChildScrollView(
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          child: Card(
-                                            elevation: 5,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(30),
-                                                  bottomLeft: Radius.circular(30),
-                                                  bottomRight: Radius.circular(30),
-                                                  topRight: Radius.circular(30)),
-                                            ),
-                                            margin: EdgeInsets.only(left: 30.0,right: 30),
-                                            child: Container(
+
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30),
+                                  topRight: Radius.circular(30)),
+                            ),
+                            margin: EdgeInsets.only(left: 30.0,right: 30),
+                            child: Container(
+                              height: 260,
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        goToNextPage(context, 0);
+                                      },
+                                      child: Container(
+                                        clipBehavior: Clip.hardEdge,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              bottomLeft: Radius.circular(30.0),
+                                              topLeft: Radius.circular(30.0)),
+                                        ),
+                                        child: Stack(
+
+                                          children: [
+                                            Container(
+                                                height: 260,
+
+
+                                                child: ClipRRect(
+                                                  //borderRadius: BorderRadius.circular(15.0),
+                                                  child: Image(
+                                                    image: new AssetImage(
+                                                        "assets/images/welcome.jpeg"),
+
+                                                    color: null,
+                                                    fit: BoxFit.fitHeight,
+
+                                                  ),
+                                                )),
+
+                                            Container(
                                               height: 260,
-                                              child: Row(
-                                                children: [
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        goToNextPage(context, 0);
-                                                      },
-                                                      child: Container(
-                                                        clipBehavior: Clip.hardEdge,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.only(
-                                                              bottomLeft: Radius.circular(30.0),
-                                                              topLeft: Radius.circular(30.0)),
-                                                        ),
-                                                        child: Stack(
-
-                                                          children: [
-                                                            Container(
-                                                                height: 260,
-
-
-                                                                child: ClipRRect(
-                                                                  //borderRadius: BorderRadius.circular(15.0),
-                                                                  child: Image(
-                                                                    image: new AssetImage(
-                                                                        "assets/images/welcome.jpeg"),
-
-                                                                    color: null,
-                                                                    fit: BoxFit.fitHeight,
-
-                                                                  ),
-                                                                )),
-
-                                                            Container(
-                                                              height: 260,
-                                                              color: Col.tranparent,
-                                                              alignment: Alignment.bottomCenter,
-                                                              padding: EdgeInsets.only(bottom: 10),
-                                                              child: Text(
-                                                                "Welcome Pack",
-                                                                style: TextStyle(
-                                                                    fontSize: 16,
-                                                                    color: Col.white,
-                                                                    fontFamily:
-                                                                    "RobotoExtraBold"),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Expanded(
-                                                    child: Container(
-                                                      height: 260,
-
-                                                      child: Column(
-                                                        children: [
-                                                          Expanded(
-
-                                                            child: Container(
-                                                              clipBehavior: Clip.hardEdge,
-                                                              decoration: BoxDecoration(
-                                                                borderRadius: BorderRadius.only(
-                                                                    topRight: Radius.circular(30.0)),
-                                                              ),
-                                                              alignment: Alignment.center,
-                                                              //color: color,
-                                                              child: Stack(
-
-                                                                children: [
-                                                                  Container(
-                                                                      height: 130,
-                                                                      child: ClipRRect(
-                                                                        //borderRadius: BorderRadius.circular(15.0),
-                                                                        child: Image(
-                                                                          image: new AssetImage(
-                                                                              "assets/images/ic_outlets.png"),
-
-                                                                          color: null,
-                                                                          fit: BoxFit.fill,
-                                                                          alignment:
-                                                                          Alignment
-                                                                              .center,
-                                                                        ),
-                                                                      )
-                                                                  ),
-
-                                                                  Container(
-                                                                    height: 130,
-                                                                    color: Col.tranparent,
-                                                                    alignment: Alignment.bottomCenter,
-                                                                    padding: EdgeInsets.only(bottom: 6),
-                                                                    child: Text(
-                                                                      "Outlets",
-                                                                      style: TextStyle(
-                                                                          fontSize: 16,
-                                                                          color: Col.white,
-                                                                          fontFamily:
-                                                                          "RobotoExtraBold"),
-                                                                    ),
-                                                                  ),
-
-
-                                                                ],
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-                                                          Expanded(
-
-                                                            child: InkWell(
-
-                                                              onTap:  () {
-                                                                  goToNextPage(context, 2);
-                                                                  },
-                                                              child: Container(
-                                                                clipBehavior: Clip.hardEdge,
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.only(
-                                                                      bottomRight: Radius.circular(30.0)),
-                                                                ),
-                                                                alignment: Alignment.center,
-                                                                //color: color,
-                                                                child: Stack(
-
-                                                                  children: [
-                                                                    Container(
-                                                                        height: 130,
-                                                                        child: ClipRRect(
-                                                                          //borderRadius: BorderRadius.circular(15.0),
-                                                                          child: Image(
-                                                                            image: new AssetImage(
-                                                                                "assets/images/bus_schedule.jpeg"),
-
-                                                                            color: null,
-                                                                            fit: BoxFit.cover,
-                                                                            alignment:
-                                                                            Alignment
-                                                                                .center,
-                                                                          ),
-                                                                        )
-                                                                    ),
-
-                                                                    Container(
-                                                                      height: 130,
-                                                                      color: Col.tranparent,
-                                                                      alignment: Alignment.bottomCenter,
-                                                                      padding: EdgeInsets.only(bottom: 6),
-                                                                      child: Text(
-                                                                        "Bus Schedule",
-                                                                        style: TextStyle(
-                                                                            fontSize: 16,
-                                                                            color: Col.white,
-                                                                            fontFamily:
-                                                                            "RobotoExtraBold"),
-                                                                      ),
-                                                                    ),
-
-
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  )
-                                                ],
+                                              color: Col.tranparent,
+                                              alignment: Alignment.bottomCenter,
+                                              padding: EdgeInsets.only(bottom: 10),
+                                              child: Text(
+                                                "Welcome Pack",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Col.white,
+                                                    fontFamily:
+                                                    "RobotoExtraBold"),
                                               ),
                                             ),
-                                          ),
+                                          ],
                                         ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: Container(
+                                      height: 260,
 
-                                        SizedBox(
-                                          width: 5,
-                                        ),
-                                        Container(
-                                          child: Card(
-                                            elevation: 5,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(30),
-                                                  bottomLeft: Radius.circular(30),
-                                                  bottomRight: Radius.circular(30),
-                                                  topRight: Radius.circular(30)),
-                                            ),
-                                            margin: EdgeInsets.only(left: 30.0,right: 30,top: 20,bottom: 20),
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+
                                             child: Container(
-                                              height: 260,
-                                              child: Row(
+                                              clipBehavior: Clip.hardEdge,
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.only(
+                                                    topRight: Radius.circular(30.0)),
+                                              ),
+                                              alignment: Alignment.center,
+                                              //color: color,
+                                              child: Stack(
+
                                                 children: [
+                                                  Container(
+                                                      height: 130,
+                                                      child: ClipRRect(
+                                                        //borderRadius: BorderRadius.circular(15.0),
+                                                        child: Image(
+                                                          image: new AssetImage(
+                                                              "assets/images/ic_outlets.png"),
 
-                                                  Expanded(
-                                                    child: Container(
-                                                      height: 260,
+                                                          color: null,
+                                                          fit: BoxFit.fill,
+                                                          alignment:
+                                                          Alignment
+                                                              .center,
+                                                        ),
+                                                      )
+                                                  ),
 
-                                                      child: Column(
-                                                        children: [
-                                                          Expanded(
-
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                goToNextPage(context, 4);
-                                                              },
-                                                              child: Container(
-                                                                clipBehavior: Clip.hardEdge,
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.only(
-                                                                      topLeft: Radius.circular(30.0)),
-                                                                ),
-                                                                alignment: Alignment.center,
-                                                                //color: color,
-                                                                child: Stack(
-
-                                                                  children: [
-                                                                    Container(
-                                                                        height: 130,
-                                                                        child: ClipRRect(
-                                                                          //borderRadius: BorderRadius.circular(15.0),
-                                                                          child: Image(
-                                                                            image: new AssetImage(
-                                                                                "assets/images/menu.jpeg"),
-
-                                                                            color: null,
-                                                                            fit: BoxFit.fill,
-                                                                            alignment:
-                                                                            Alignment
-                                                                                .center,
-                                                                          ),
-                                                                        )
-                                                                    ),
-
-                                                                    Container(
-                                                                      height: 130,
-                                                                      color: Col.tranparent,
-                                                                      alignment: Alignment.bottomCenter,
-                                                                      padding: EdgeInsets.only(bottom: 6),
-                                                                      child: Text(
-                                                                        "Menu",
-                                                                        style: TextStyle(
-                                                                            fontSize: 16,
-                                                                            color: Col.white,
-                                                                            fontFamily:
-                                                                            "RobotoExtraBold"),
-                                                                      ),
-                                                                    ),
-
-
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          SizedBox(
-                                                            height: 10,
-                                                          ),
-                                                          Expanded(
-
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                goToNextPage(context, 5);
-                                                              },
-                                                              child: Container(
-                                                                clipBehavior: Clip.hardEdge,
-                                                                decoration: BoxDecoration(
-                                                                  borderRadius: BorderRadius.only(
-                                                                      bottomLeft: Radius.circular(30.0)),
-                                                                ),
-                                                                alignment: Alignment.center,
-                                                                //color: color,
-                                                                child: Stack(
-
-                                                                  children: [
-                                                                    Container(
-                                                                        height: 130,
-                                                                        child: ClipRRect(
-                                                                          //borderRadius: BorderRadius.circular(15.0),
-                                                                          child: Image(
-                                                                            image: new AssetImage(
-                                                                                "assets/images/ic_food.jpeg"),
-
-                                                                            color: null,
-                                                                            fit: BoxFit.cover,
-                                                                            alignment:
-                                                                            Alignment
-                                                                                .center,
-                                                                          ),
-                                                                        )
-                                                                    ),
-
-                                                                    Container(
-                                                                      height: 130,
-                                                                      color: Col.tranparent,
-                                                                      alignment: Alignment.bottomCenter,
-                                                                      padding: EdgeInsets.only(bottom: 6),
-                                                                      child: Text(
-                                                                        "Food Safety",
-                                                                        style: TextStyle(
-                                                                            fontSize: 16,
-                                                                            color: Col.white,
-                                                                            fontFamily:
-                                                                            "RobotoExtraBold"),
-                                                                      ),
-                                                                    ),
-
-
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
+                                                  Container(
+                                                    height: 130,
+                                                    color: Col.tranparent,
+                                                    alignment: Alignment.bottomCenter,
+                                                    padding: EdgeInsets.only(bottom: 6),
+                                                    child: Text(
+                                                      "Outlets",
+                                                      style: TextStyle(
+                                                          fontSize: 16,
+                                                          color: Col.white,
+                                                          fontFamily:
+                                                          "RobotoExtraBold"),
                                                     ),
                                                   ),
-                                                  SizedBox(
-                                                    width: 10,
-                                                  ),
-                                                  Expanded(
-                                                    child: InkWell(
-                                                      onTap: () {
-                                                        goToNextPage(context, 6);
-                                                      },
-                                                      child: Container(
-                                                        clipBehavior: Clip.hardEdge,
-                                                        decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.only(
-                                                              bottomRight: Radius.circular(30.0),
-                                                              topRight: Radius.circular(30.0)),
-                                                        ),
-                                                        child: Stack(
 
-                                                          children: [
-                                                            Container(
-                                                                height: 260,
-
-
-                                                                child: ClipRRect(
-                                                                  //borderRadius: BorderRadius.circular(15.0),
-                                                                  child: Image(
-                                                                    image: new AssetImage(
-                                                                        "assets/images/taining.jpeg"),
-
-                                                                    color: null,
-                                                                    fit: BoxFit.fitHeight,
-
-                                                                  ),
-                                                                )),
-
-                                                            Container(
-                                                              height: 260,
-                                                              color: Col.tranparent,
-                                                              alignment: Alignment.bottomCenter,
-                                                              padding: EdgeInsets.only(bottom: 10),
-                                                              child: Text(
-                                                                "Training",
-                                                                style: TextStyle(
-                                                                    fontSize: 16,
-                                                                    color: Col.white,
-                                                                    fontFamily:
-                                                                    "RobotoExtraBold"),
-                                                              ),
-                                                            ),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ),
 
                                                 ],
                                               ),
                                             ),
                                           ),
-                                        ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Expanded(
 
-                                        Container(
-                                          child: Card(
-                                            elevation: 5,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(30),
-                                                  topRight: Radius.circular(30)),
-                                            ),
-                                            margin: EdgeInsets.only(left: 30.0,right: 30),
-                                            child: Container(
-                                              height: 130,
-                                              child:  Expanded(
-                                                child: Container(
-                                                  clipBehavior: Clip.hardEdge,
-                                                  decoration: BoxDecoration(
-                                                    borderRadius: BorderRadius.only(
-                                                        topRight: Radius.circular(30.0),
-                                                        topLeft: Radius.circular(30.0)),
-                                                  ),
-                                                  child: Stack(
+                                            child: InkWell(
 
-                                                    children: [
-                                                      Container(
-                                                          width: width,
-                                                          child: ClipRRect(
-                                                            //borderRadius: BorderRadius.circular(15.0),
-                                                            child: Image(
-                                                              image: new AssetImage(
-                                                                  "assets/images/ic_sos.jpg"),
+                                              onTap:  () {
+                                                goToNextPage(context, 2);
+                                              },
+                                              child: Container(
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomRight: Radius.circular(30.0)),
+                                                ),
+                                                alignment: Alignment.center,
+                                                //color: color,
+                                                child: Stack(
 
-                                                              color: null,
-                                                              fit: BoxFit.fitWidth,
-
-                                                            ),
-                                                          )),
-
-                                                      Container(
+                                                  children: [
+                                                    Container(
                                                         height: 130,
-                                                        color: Col.tranparent2,
-                                                        alignment: Alignment.bottomCenter,
-                                                        padding: EdgeInsets.only(bottom: 2),
-                                                        child: Text(
-                                                          "Important Announcements",
-                                                          style: TextStyle(
-                                                              fontSize: 18,
-                                                              color: Col.white,
-                                                              fontFamily:
-                                                              "RobotoExtraBold"),
-                                                        ),
+                                                        child: ClipRRect(
+                                                          //borderRadius: BorderRadius.circular(15.0),
+                                                          child: Image(
+                                                            image: new AssetImage(
+                                                                "assets/images/bus_schedule.jpeg"),
+
+                                                            color: null,
+                                                            fit: BoxFit.cover,
+                                                            alignment:
+                                                            Alignment
+                                                                .center,
+                                                          ),
+                                                        )
+                                                    ),
+
+                                                    Container(
+                                                      height: 130,
+                                                      color: Col.tranparent,
+                                                      alignment: Alignment.bottomCenter,
+                                                      padding: EdgeInsets.only(bottom: 6),
+                                                      child: Text(
+                                                        "Bus Schedule",
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Col.white,
+                                                            fontFamily:
+                                                            "RobotoExtraBold"),
                                                       ),
-                                                    ],
-                                                  ),
+                                                    ),
+
+
+                                                  ],
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
+                                        ],
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
 
-                                      ],
+                        SizedBox(
+                          width: 5,
+                        ),
+                        Container(
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  bottomLeft: Radius.circular(30),
+                                  bottomRight: Radius.circular(30),
+                                  topRight: Radius.circular(30)),
+                            ),
+                            margin: EdgeInsets.only(left: 30.0,right: 30,top: 20,bottom: 20),
+                            child: Container(
+                              height: 260,
+                              child: Row(
+                                children: [
+
+                                  Expanded(
+                                    child: Container(
+                                      height: 260,
+
+                                      child: Column(
+                                        children: [
+                                          Expanded(
+
+                                            child: InkWell(
+                                              onTap: () {
+                                                goToNextPage(context, 4);
+                                              },
+                                              child: Container(
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      topLeft: Radius.circular(30.0)),
+                                                ),
+                                                alignment: Alignment.center,
+                                                //color: color,
+                                                child: Stack(
+
+                                                  children: [
+                                                    Container(
+                                                        height: 130,
+                                                        child: ClipRRect(
+                                                          //borderRadius: BorderRadius.circular(15.0),
+                                                          child: Image(
+                                                            image: new AssetImage(
+                                                                "assets/images/menu.jpeg"),
+
+                                                            color: null,
+                                                            fit: BoxFit.fill,
+                                                            alignment:
+                                                            Alignment
+                                                                .center,
+                                                          ),
+                                                        )
+                                                    ),
+
+                                                    Container(
+                                                      height: 130,
+                                                      color: Col.tranparent,
+                                                      alignment: Alignment.bottomCenter,
+                                                      padding: EdgeInsets.only(bottom: 6),
+                                                      child: Text(
+                                                        "Menu",
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Col.white,
+                                                            fontFamily:
+                                                            "RobotoExtraBold"),
+                                                      ),
+                                                    ),
+
+
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 10,
+                                          ),
+                                          Expanded(
+
+                                            child: InkWell(
+                                              onTap: () {
+                                                goToNextPage(context, 5);
+                                              },
+                                              child: Container(
+                                                clipBehavior: Clip.hardEdge,
+                                                decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.only(
+                                                      bottomLeft: Radius.circular(30.0)),
+                                                ),
+                                                alignment: Alignment.center,
+                                                //color: color,
+                                                child: Stack(
+
+                                                  children: [
+                                                    Container(
+                                                        height: 130,
+                                                        child: ClipRRect(
+                                                          //borderRadius: BorderRadius.circular(15.0),
+                                                          child: Image(
+                                                            image: new AssetImage(
+                                                                "assets/images/ic_food.jpeg"),
+
+                                                            color: null,
+                                                            fit: BoxFit.cover,
+                                                            alignment:
+                                                            Alignment
+                                                                .center,
+                                                          ),
+                                                        )
+                                                    ),
+
+                                                    Container(
+                                                      height: 130,
+                                                      color: Col.tranparent,
+                                                      alignment: Alignment.bottomCenter,
+                                                      padding: EdgeInsets.only(bottom: 6),
+                                                      child: Text(
+                                                        "Food Safety",
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            color: Col.white,
+                                                            fontFamily:
+                                                            "RobotoExtraBold"),
+                                                      ),
+                                                    ),
+
+
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 2,
-                                ),
+                                  SizedBox(
+                                    width: 10,
+                                  ),
+                                  Expanded(
+                                    child: InkWell(
+                                      onTap: () {
+                                        goToNextPage(context, 6);
+                                      },
+                                      child: Container(
+                                        clipBehavior: Clip.hardEdge,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.only(
+                                              bottomRight: Radius.circular(30.0),
+                                              topRight: Radius.circular(30.0)),
+                                        ),
+                                        child: Stack(
+
+                                          children: [
+                                            Container(
+                                                height: 260,
 
 
-                                /*Container(
-                                      alignment: Alignment.bottomCenter,
-                                      width: MediaQuery.of(context).size.width,
+                                                child: ClipRRect(
+                                                  //borderRadius: BorderRadius.circular(15.0),
+                                                  child: Image(
+                                                    image: new AssetImage(
+                                                        "assets/images/taining.jpeg"),
 
+                                                    color: null,
+                                                    fit: BoxFit.fitHeight,
 
-                                      padding: EdgeInsets.only(
-                                          left: 20, top: 5, right: 20, bottom: 20),
-                                      // child: Text(catDetails.catTitle,
-                                      child: GridView.count(
-                                        scrollDirection: Axis.vertical,
-                                        shrinkWrap: true,
-                                        crossAxisCount: 2,
-                                        childAspectRatio: 1.4,
-                                        primary: false,
-                                        padding: const EdgeInsets.all(12),
-                                        children: [
-                                          _addAmountLayout(context,0,"WElCOME PACK","Book your hotel", "assets/images/ic_welcome.png",Col.s1),
-                                          _addAmountLayout(context,1,"B&F OUTLET","Scan to open", "assets/images/ic_welcome.png",Col.s2),
-                                          _addAmountLayout(context,2,"BUS SCHEDULE","City of Qatar", "assets/images/ic_bus.png",Col.s3),
-                                          _addAmountLayout(context,3,"MENU","Looking for create history", "assets/images/ic_menu.png",Col.s4),
-                                          _addAmountLayout(context,4,"FOOD SAFETY","Make yourself", "assets/images/ic_food_safety.png",Col.s2),
-                                          _addAmountLayout(context,5,"TRAINING","Check match schedules", "assets/images/ic_training.png",Col.s5),
-                                          _addAmountLayout(context,5,"SOPS","Check match schedules", "assets/images/ic_sop.png",Col.s5),
+                                                  ),
+                                                )),
 
-
-
-                                        ],
-
+                                            Container(
+                                              height: 260,
+                                              color: Col.tranparent,
+                                              alignment: Alignment.bottomCenter,
+                                              padding: EdgeInsets.only(bottom: 10),
+                                              child: Text(
+                                                "Training",
+                                                style: TextStyle(
+                                                    fontSize: 16,
+                                                    color: Col.white,
+                                                    fontFamily:
+                                                    "RobotoExtraBold"),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    ),*/
-                              
-                            ],
-                        ),
-                      )),
-                     /* Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
+                                    ),
+                                  ),
 
-                          Text(
-                            "Sponsored by",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 10,
-                                color: Col.primary_black,
-                                fontFamily: "RobotoSemiBold"),
+                                ],
+                              ),
+                            ),
                           ),
-                          SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                              height: 22,
-                              padding: EdgeInsets.all(3.0),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(2.0),
-                                child: Image(
-                                  image: new AssetImage(
-                                      "assets/images/ic_footer.png"),
-                                  color: null,
-                                  fit: BoxFit.fitHeight,
-                                  alignment: Alignment.center,
+                        ),
+
+                        Container(
+                          child: Card(
+                            elevation: 5,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30),
+                                  topRight: Radius.circular(30)),
+                            ),
+                            margin: EdgeInsets.only(left: 30.0,right: 30),
+                            child: Container(
+                              height: 130,
+                              child:  Expanded(
+                                child: Container(
+                                  clipBehavior: Clip.hardEdge,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(30.0),
+                                        topLeft: Radius.circular(30.0)),
+                                  ),
+                                  child: Stack(
+
+                                    children: [
+                                      Container(
+                                          width: width,
+                                          child: ClipRRect(
+                                            //borderRadius: BorderRadius.circular(15.0),
+                                            child: Image(
+                                              image: new AssetImage(
+                                                  "assets/images/ic_sos.jpg"),
+
+                                              color: null,
+                                              fit: BoxFit.fitWidth,
+
+                                            ),
+                                          )),
+
+                                      Container(
+                                        height: 130,
+                                        color: Col.tranparent2,
+                                        alignment: Alignment.bottomCenter,
+                                        padding: EdgeInsets.only(bottom: 2),
+                                        child: Text(
+                                          "Important Announcements",
+                                          style: TextStyle(
+                                              fontSize: 18,
+                                              color: Col.white,
+                                              fontFamily:
+                                              "RobotoExtraBold"),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
-                              )),
-                        ],
-                      )*/
-                    ],
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        SizedBox(
+                          height: 15,
+                        ),
+
+                      ],
+                    ),
                   ),
                 ),
-              ),
+
             ],
           ),
         ),

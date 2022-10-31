@@ -22,10 +22,8 @@ import 'package:hotels/utils/Cons.dart';
 import 'package:http/http.dart' as http;
 
 class RestaurentListActivity extends StatefulWidget {
-
-
   @override
-  RestaurentListActivityView createState() =>RestaurentListActivityView();
+  RestaurentListActivityView createState() => RestaurentListActivityView();
 }
 
 class RestaurentListActivityView extends State<RestaurentListActivity> {
@@ -37,7 +35,6 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
 
   @override
   void initState() {
-
     super.initState();
 
     isConnected().then((intenet) {
@@ -54,13 +51,10 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
       }
     });
     //_isConnected();
-
-
   }
 
   @override
   Widget build(BuildContext context) {
-
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
 
@@ -68,79 +62,75 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
       resizeToAvoidBottomInset: true,
       appBar: AppBar(
         backgroundColor: Col.primary_blue,
-        title: const Text('Menu', style: TextStyle(fontSize: 20.0, color: Colors.white),),
+        title: const Text(
+          'Menu',
+          style: TextStyle(fontSize: 20.0, color: Colors.white),
+        ),
         toolbarHeight: 70,
       ),
       body: SafeArea(
         child: Container(
-
-          child: isLoaded==false? Container(
-              color: Col.white_bg,
-              height: height,
-              margin: EdgeInsets.only(left: 15.0,right: 15),
-
-              child: Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: ListView.builder(
+          child: isLoaded == false
+              ? Container(
+                  color: Col.white_bg,
+                  height: height,
+                  margin: EdgeInsets.only(left: 15.0, right: 15),
+                  child: Padding(
+                    padding: EdgeInsets.all(5.0),
+                    child: ListView.builder(
                         itemCount: _tList.length,
                         //itemCount: _restaurentList.length,
                         scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) => _itemLayout(context, index, _tList[index])
+                        itemBuilder: (context, index) =>
+                            _itemLayout(context, index, _tList[index])
 
                         //shrinkWrap: true,
-                      ),
+                        ),
+                  ),
+                )
+              : Container(
+                  width: width,
+                  height: height,
+                  color: Col.white,
+                  child: Container(
+                    height: 200,
+                    alignment: Alignment.center,
+                    child: Image(
+                      image: new AssetImage("assets/images/loader.gif"),
+                      color: null,
+                      fit: BoxFit.fill,
                     ),
                   ),
-
-          ): Container(
-            width: width,
-            height: height,
-            color: Col.white,
-            child: Container(
-              height: 200,
-
-              alignment: Alignment.center,
-              child: Image(
-                image: new AssetImage("assets/images/loader.gif"),
-                color: null,
-                fit: BoxFit.fill,
-              ),
-            ),
-          ),
+                ),
         ),
       ),
-
     );
   }
 
-
-  Widget _itemLayout(BuildContext context, int index,RestaurentDetails restaurentItem) {
+  Widget _itemLayout(
+      BuildContext context, int index, RestaurentDetails restaurentItem) {
     return Padding(
       padding: const EdgeInsets.all(2.0),
-
-      child:  Card(
-              shape: RoundedRectangleBorder(
-                borderRadius:
-                BorderRadius.circular(15.0),
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        elevation: 1,
+        child: GestureDetector(
+            child: InkWell(
+          onTap: () {
+            goToNextPage(
+                context, 0, restaurentItem.file!.url!, restaurentItem.name!);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15.0),
+              image: DecorationImage(
+                image: AssetImage("assets/images/background_card.png"),
+                fit: BoxFit.cover,
               ),
-              elevation:1,
-              child: GestureDetector(
-                  child: InkWell(
-                    onTap: () {
-                      goToNextPage(context, 0,restaurentItem.file!.url!,restaurentItem.name!);
-                    },
-                    child: Container(
-
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15.0),
-                        image: DecorationImage(
-                          image: AssetImage("assets/images/background_card.png"),
-                          fit: BoxFit.cover,
-                        ),
-
-                      ),
-                     /* decoration: BoxDecoration(
+            ),
+            /* decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(12.0),
                         gradient: LinearGradient(
                           colors: [
@@ -151,76 +141,71 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
                         ),
                       ),*/
 
-                      child: Container(
-                        alignment: Alignment.center,
-                        height: 100,
+            child: Container(
+              alignment: Alignment.center,
+              height: 100,
 
-                        //color: color,
-                        child: Row(
-                          children: [
-                            Container(
-                              height: 100,
-                              alignment: Alignment.centerLeft,
-                              child:ClipRRect(
-                                borderRadius: BorderRadius.circular(15.0),
-                                child: Image.network(
-                                  restaurentItem.image!.url!,
-                                  height: 100.0,
-                                  width: 120.0,
-                                  fit: BoxFit.fill,
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Container(
-                                margin: EdgeInsets.only(left: 15,right: 10,top: 10,bottom: 10),
-                                child: Column(
-
-                                  children: [
-                                    //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
-
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        restaurentItem.name!,
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          fontSize: 20,
-                                          color: Col.white,
-                                          fontFamily: "RobotoBold"
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 10,),
-
-                                    Container(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        restaurentItem.description!,
-                                        style: TextStyle(
-                                            fontSize: 14,
-                                            color: Col.white,
-                                            fontFamily: "RobotoRegular"
-                                        ),
-                                      ),
-                                    ),
-
-
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+              //color: color,
+              child: Row(
+                children: [
+                  Container(
+                    height: 100,
+                    alignment: Alignment.centerLeft,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15.0),
+                      child: Image.network(
+                        restaurentItem.image!.url!,
+                        height: 100.0,
+                        width: 120.0,
+                        fit: BoxFit.fill,
                       ),
                     ),
-                  )
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.only(
+                          left: 15, right: 10, top: 10, bottom: 10),
+                      child: Column(
+                        children: [
+                          //ImageIcon(AssetImage(icon),size: 120,color: Col.primary_blue,),
+
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              restaurentItem.name!,
+                              maxLines: 1,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Col.white,
+                                  fontFamily: "RobotoBold"),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              restaurentItem.description!,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  color: Col.white,
+                                  fontFamily: "RobotoRegular"),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-
+          ),
+        )),
+      ),
     );
   }
-
 
   Future<bool> isConnected() async {
     try {
@@ -237,8 +222,6 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
       return false;
     }
   }
-
-
 
   showLoaderDialog(BuildContext context) {
     AlertDialog alert = AlertDialog(
@@ -259,7 +242,6 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
     );
   }
 
-
   void _isConnected() async {
     try {
       final result = await InternetAddress.lookup('google.com');
@@ -268,8 +250,7 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
         setState(() {
           isConnect = true;
         });
-      }
-      else{
+      } else {
         setState(() {
           isConnect = false;
         });
@@ -285,91 +266,75 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
     }
   }
 
-
   Future getRestaurentList() async {
-
     Map map = {
-      "uid":App.getString(Cons.aToken),
-
+      "uid": App.getString(Cons.aToken),
     };
 
     var header = {
-      "Content-Type":"application/json",
-      "Authorization":"Bearer "+App.getString(Cons.aToken)
-
+      "Content-Type": "application/json",
+      "Authorization": "Bearer " + App.getString(Cons.aToken)
     };
 
     print("request =====: " + map.toString() + "");
 
+    try {
+      var response = await http.get(Uri.parse(Apis.restaurentList),
+          headers: {"Authorization": "Bearer " + App.getString(Cons.aToken)});
 
-      try {
-        var response = await http.get(Uri.parse(Apis.restaurentList),headers: {
-          "Authorization":"Bearer "+App.getString(Cons.aToken)
+      print('response=== ' + response.statusCode.toString());
+      if (response.statusCode == 200) {
+        print("response =====: " + response.body.toString() + "");
+        try {
+          Map<String, dynamic> parsed = json.decode(response.body);
+          RestaurentListRes res = RestaurentListRes.fromJson(parsed);
+          setState(() {
+            _tList.clear();
 
-        } );
+            _tList.addAll(res.data!);
+          });
 
-        print('response=== ' +response.statusCode.toString());
-        if (response.statusCode == 200) {
-          print("response =====: " + response.body.toString() + "");
-          try {
-
-            Map<String,dynamic> parsed = json.decode(response.body);
-            RestaurentListRes res = RestaurentListRes.fromJson(parsed);
-            setState(() {
-              _tList.clear();
-
-              _tList.addAll(res.data!);
-            });
-
-            setState(() {
-              isLoaded = false;
-            });
-
-
-          }on Exception catch (e){
-            setState(() {
-              isLoaded = false;
-            });
-            print('Exception=== ' + e.toString());
-          }
-
-
-
-
-        }else{
           setState(() {
             isLoaded = false;
           });
-
-          print('Exception=== ' + "Not loaded");
+        } on Exception catch (e) {
+          setState(() {
+            isLoaded = false;
+          });
+          print('Exception=== ' + e.toString());
         }
-      } on Exception catch (e) {
-        print('Exception==' + e.toString());
-
+      } else {
         setState(() {
           isLoaded = false;
         });
+
+        print('Exception=== ' + "Not loaded");
       }
+    } on Exception catch (e) {
+      print('Exception==' + e.toString());
 
-
+      setState(() {
+        isLoaded = false;
+      });
+    }
   }
 }
 
-goToNextPage(BuildContext context, int intex,String url,String tName) async {
+goToNextPage(BuildContext context, int intex, String url, String tName) async {
   print("goToNextPage");
 
   if (intex == 0) {
-
-    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentDetailsActivity(url: url,tName: tName,)));
-
-    }else if(intex == 1){
-
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(
+        builder: (context) => RestaurentDetailsActivity(
+              url: url,
+              tName: tName,
+            )));
+  } else if (intex == 1) {
     ////Navigator.of(context).push(MaterialPageRoute(builder: (context) => DoctorActivity()));
   }
-
 }
 
-void showToast(String massage){
+void showToast(String massage) {
   Fluttertoast.showToast(
       msg: massage,
       toastLength: Toast.LENGTH_SHORT,
@@ -377,6 +342,5 @@ void showToast(String massage){
       timeInSecForIosWeb: 1,
       backgroundColor: Colors.grey,
       textColor: Colors.white,
-      fontSize: 16.0
-  );
+      fontSize: 16.0);
 }

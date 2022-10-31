@@ -77,19 +77,17 @@ class BusListActivityView extends State<BusListActivity> {
               height: height,
               margin: EdgeInsets.only(left: 15.0,right: 15),
 
-              child: Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.all(5.0),
-                      child: ListView.builder(
-                        itemCount: _tList.length,
-                        //itemCount: _restaurentList.length,
-                        scrollDirection: Axis.vertical,
-                        itemBuilder: (context, index) => _itemLayout(context, index, _tList[index])
+              child: Padding(
+                padding: EdgeInsets.all(5.0),
+                child: ListView.builder(
+                    itemCount: _tList.length,
+                    //itemCount: _restaurentList.length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (context, index) => _itemLayout(context, index, _tList[index])
 
-                        //shrinkWrap: true,
-                      ),
-                    ),
-                  ),
+                  //shrinkWrap: true,
+                ),
+              ),
 
           ): Container(
             width: width,
@@ -317,6 +315,7 @@ class BusListActivityView extends State<BusListActivity> {
               _tList.clear();
 
               _tList.addAll(res.data!);
+              print("response _tList=====: " + _tList.length.toString() + "");
             });
 
             setState(() {

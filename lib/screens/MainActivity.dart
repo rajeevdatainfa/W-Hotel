@@ -8,6 +8,8 @@ import 'package:hotels/screens/AboutActivity.dart';
 import 'package:hotels/screens/BusListActivity.dart';
 import 'package:hotels/screens/BusScheduleActivity.dart';
 import 'package:hotels/screens/FifaActivity.dart';
+import 'package:hotels/screens/FoodListActivity.dart';
+import 'package:hotels/screens/HelpListActivity.dart';
 import 'package:hotels/screens/MenuActivity.dart';
 import 'package:hotels/screens/RestaurentListActivity.dart';
 import 'package:hotels/screens/RestuarentActivity.dart';
@@ -18,6 +20,8 @@ import 'package:hotels/screens/WelcomeActivity.dart';
 import 'package:hotels/utils/Col.dart';
 
 class MainActivity extends StatefulWidget {
+
+
   @override
   HomeActivityView createState() => HomeActivityView();
 }
@@ -506,56 +510,61 @@ class HomeActivityView extends State<MainActivity> {
                         ),
 
                         Container(
-                          child: Card(
-                            elevation: 5,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(30),
-                                  topRight: Radius.circular(30)),
-                            ),
-                            margin: EdgeInsets.only(left: 30.0,right: 30),
-                            child: Container(
-                              height: 130,
-                              child:  Expanded(
-                                child: Container(
-                                  clipBehavior: Clip.hardEdge,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                        topRight: Radius.circular(30.0),
-                                        topLeft: Radius.circular(30.0)),
-                                  ),
-                                  child: Stack(
+                          child: InkWell(
+                            onTap: () {
+                              goToNextPage(context, 7);
+                            },
+                            child: Card(
+                              elevation: 5,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(30),
+                                    topRight: Radius.circular(30)),
+                              ),
+                              margin: EdgeInsets.only(left: 30.0,right: 30),
+                              child: Container(
+                                height: 130,
+                                child:  Expanded(
+                                  child: Container(
+                                    clipBehavior: Clip.hardEdge,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(30.0),
+                                          topLeft: Radius.circular(30.0)),
+                                    ),
+                                    child: Stack(
 
-                                    children: [
-                                      Container(
-                                          width: width,
-                                          child: ClipRRect(
-                                            //borderRadius: BorderRadius.circular(15.0),
-                                            child: Image(
-                                              image: new AssetImage(
-                                                  "assets/images/ic_sos.jpg"),
+                                      children: [
+                                        Container(
+                                            width: width,
+                                            child: ClipRRect(
+                                              //borderRadius: BorderRadius.circular(15.0),
+                                              child: Image(
+                                                image: new AssetImage(
+                                                    "assets/images/ic_sos.jpg"),
 
-                                              color: null,
-                                              fit: BoxFit.fitWidth,
+                                                color: null,
+                                                fit: BoxFit.fitWidth,
 
-                                            ),
-                                          )),
+                                              ),
+                                            )),
 
-                                      Container(
-                                        height: 130,
-                                        color: Col.tranparent2,
-                                        alignment: Alignment.bottomCenter,
-                                        padding: EdgeInsets.only(bottom: 2),
-                                        child: Text(
-                                          "Important Announcements",
-                                          style: TextStyle(
-                                              fontSize: 18,
-                                              color: Col.white,
-                                              fontFamily:
-                                              "RobotoExtraBold"),
+                                        Container(
+                                          height: 130,
+                                          color: Col.tranparent2,
+                                          alignment: Alignment.bottomCenter,
+                                          padding: EdgeInsets.only(bottom: 2),
+                                          child: Text(
+                                            "Important Announcements",
+                                            style: TextStyle(
+                                                fontSize: 18,
+                                                color: Col.white,
+                                                fontFamily:
+                                                "RobotoExtraBold"),
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -730,9 +739,17 @@ goToNextPage(BuildContext context, int intex) async {
     // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
   }else if (intex == 5) {
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FoodListActivity()));
     //Food
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
     // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
     //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
-  } else {}
+  }
+  else if (intex == 7) {
+    Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => HelpListActivity()));
+    //Food
+    //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => RestaurentActivity()));
+    // Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => ScheduleActivity()));
+    //Navigator.of(context, rootNavigator: true).push(MaterialPageRoute(builder: (context) => FifaActivity(url: "https://www.tripadvisor.in/Hotels-g294009-Doha-Hotels.html",)));
+  }else {}
 }

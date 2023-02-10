@@ -18,10 +18,12 @@ class Apis{
   static const String loginApi=baseUrl + "auth/login";
   static const String signUpApi=baseUrl + "user_register.php";
   static const String busesSchedule=baseUrl + "buses";
+  static const String announcements=baseUrl + "announcements";
   static const String restaurant=baseUrl + "restaurants";
   static const String training=baseUrl + "trainings/";
   static const String busSchedule=baseUrl2 + "buses";
   static const String restaurentList=baseUrl2 + "restaurants";
+  static const String restaurentListType=baseUrl2 + "restaurants/type/";
   static const String foodCategory=baseUrl + "restaurant/menu/";
 
 

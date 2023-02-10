@@ -31,11 +31,15 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
   double defaultIconSize = 17;
   bool isConnect = true;
   bool isLoaded = false;
+  String type="HCMC";
   List<RestaurentDetails> _tList = [];
 
   @override
   void initState() {
     super.initState();
+
+    type = App.getString(Cons.type);
+    print("type"+ type);
 
     isConnected().then((intenet) {
       if (intenet != null && intenet) {
@@ -50,6 +54,8 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
         showToast("No Internet connection");
       }
     });
+
+
     //_isConnected();
   }
 
@@ -276,10 +282,11 @@ class RestaurentListActivityView extends State<RestaurentListActivity> {
       "Authorization": "Bearer " + App.getString(Cons.aToken)
     };
 
-    print("request =====: " + map.toString() + "");
+    print("request =====: " +Apis.restaurentListType+type + "");
 
     try {
-      var response = await http.get(Uri.parse(Apis.restaurentList),
+      //var response = await http.get(Uri.parse(Apis.restaurentList),
+      var response = await http.get(Uri.parse(Apis.restaurentListType+type),
           headers: {"Authorization": "Bearer " + App.getString(Cons.aToken)});
 
       print('response=== ' + response.statusCode.toString());

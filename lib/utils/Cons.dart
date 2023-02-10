@@ -21,6 +21,7 @@ class Cons{
   static String cart_count="count";
   static String token="token";
   static String aToken="atoken";
+  static String type="type";
 
 
   static String catId="catId";

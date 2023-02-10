@@ -9,7 +9,9 @@ import 'package:hotels/screens/FifaActivity.dart';
 import 'package:hotels/screens/MainActivity.dart';
 import 'package:hotels/screens/MenuActivity.dart';
 import 'package:hotels/screens/ScheduleActivity.dart';
+import 'package:hotels/utils/App.dart';
 import 'package:hotels/utils/Col.dart';
+import 'package:hotels/utils/Cons.dart';
 
 class LandingActivity extends StatefulWidget {
   @override
@@ -120,6 +122,7 @@ class LandingActivityView extends State<LandingActivity> {
                                       children: [
                                         InkWell(
                                           onTap: () {
+                                            App.putString(Cons.type,"HCMC");
                                             goToNextPage(context, 0);
                                           },
                                           child: Container(
@@ -194,52 +197,58 @@ class LandingActivityView extends State<LandingActivity> {
                                         ),
 
 
-                                        Container(
-                                          child: Card(
-                                            elevation: 5,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                  topLeft: Radius.circular(30),
-                                                  bottomLeft: Radius.circular(30),
-                                                  bottomRight: Radius.circular(30),
-                                                  topRight: Radius.circular(30)),
-                                            ),
-                                            margin: EdgeInsets.only(left: 30.0,right: 30),
-                                            child: Container(
-                                              height: 190,
-                                              child: Stack(
+                                        InkWell(
+                                          onTap: () {
+                                            App.putString(Cons.type,"IBC-MMC");
+                                            goToNextPage(context, 0);
+                                          },
+                                          child: Container(
+                                            child: Card(
+                                              elevation: 5,
+                                              shape: RoundedRectangleBorder(
+                                                borderRadius: BorderRadius.only(
+                                                    topLeft: Radius.circular(30),
+                                                    bottomLeft: Radius.circular(30),
+                                                    bottomRight: Radius.circular(30),
+                                                    topRight: Radius.circular(30)),
+                                              ),
+                                              margin: EdgeInsets.only(left: 30.0,right: 30),
+                                              child: Container(
+                                                height: 190,
+                                                child: Stack(
 
-                                                children: [
-                                                  Container(
-                                                      height: 190,
+                                                  children: [
+                                                    Container(
+                                                        height: 190,
 
-                                                      width: width,
-                                                      child: ClipRRect(
-                                                        borderRadius: BorderRadius.circular(30.0),
-                                                        child: Image(
-                                                          image: new AssetImage(
-                                                              "assets/images/background_card.png"),
+                                                        width: width,
+                                                        child: ClipRRect(
+                                                          borderRadius: BorderRadius.circular(30.0),
+                                                          child: Image(
+                                                            image: new AssetImage(
+                                                                "assets/images/background_card.png"),
 
-                                                          color: null,
-                                                          fit: BoxFit.fill,
+                                                            color: null,
+                                                            fit: BoxFit.fill,
 
-                                                        ),
-                                                      )),
-                                                  Container(
+                                                          ),
+                                                        )),
+                                                    Container(
 
-                                                    alignment: Alignment.center,
-                                                    padding: EdgeInsets.only(right: 1),
-                                                    child: Text(
-                                                      "IBC/MMC",
-                                                      style: TextStyle(
-                                                          fontSize: 30,
-                                                          color: Col.white,
-                                                          fontFamily:
-                                                          "RobotoBold"),
+                                                      alignment: Alignment.center,
+                                                      padding: EdgeInsets.only(right: 1),
+                                                      child: Text(
+                                                        "IBC/MMC",
+                                                        style: TextStyle(
+                                                            fontSize: 30,
+                                                            color: Col.white,
+                                                            fontFamily:
+                                                            "RobotoBold"),
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
 
+                                                ),
                                               ),
                                             ),
                                           ),
